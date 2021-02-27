@@ -1,4 +1,4 @@
-# FK-HORN
+# FKÆHORN
 Simple bot to play custom horn on your server
 
 ## Usage
@@ -10,4 +10,4 @@ Once added to your server, airhorn bot can be summoned by running `!<collection_
 3) Edit collections.json to put the name of your collection in the array
 4) You can now summon the bot with !<your_collection_name> !
 
-PS : If multiple files are put, the bot will select one random when summoned
+PS : If multiples files are put in the folder, the bot will select one random when summoned
