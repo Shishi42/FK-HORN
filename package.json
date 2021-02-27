@@ -1,0 +1,30 @@
+{
+  "name": "FKÆHORN",
+  "version": "1.0.0",
+  "description": "Discord BOT for FKÆON",
+  "main": "fkhorn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shishi42/FK-HORN.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "airhorn"
+  ],
+  "author": "Shishi42",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shishi42/FK-HORN/issues"
+  },
+  "homepage": "https://github.com/Shishi42/FK-HORN#readme",
+  "dependencies": {
+    "@discordjs/opus": "github:discordjs/opus",
+    "discord.js": "^12.3.1",
+    "fs": "0.0.1-security",
+    "jsonfile": "^6.0.1"
+  }
+}
