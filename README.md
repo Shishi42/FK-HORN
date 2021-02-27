@@ -4,7 +4,7 @@ Simple bot to play custom horn on your server
 ## Usage
 Once added to your server, airhorn bot can be summoned by running `!<collection_name>`.
 
-##How to add sound
+## How to add sound
 1) Create a folder at /commands/audio with the name of your collection
 2) Put your audio files in the folder
 2.1) If multiple files are put, the bot will select one random when summoned
