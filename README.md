@@ -7,6 +7,7 @@ Once added to your server, airhorn bot can be summoned by running `!<collection_
 ## How to add sound
 1) Create a folder at /commands/audio with the name of your collection
 2) Put your audio files in the folder
-2.1) If multiple files are put, the bot will select one random when summoned
 3) Edit collections.json to put the name of your collection in the array
 4) You can now summon the bot with !<your_collection_name> !
+
+PS : If multiple files are put, the bot will select one random when summoned
