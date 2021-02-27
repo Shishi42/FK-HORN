@@ -10,8 +10,8 @@ module.exports.run = async (bot, message, args) => {
   collection_name = args
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
 
-  song = "/audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)];
-  console.log("Playing collections : "+ collection_name +" ,file: " + song);
+  song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)];
+  console.log("Playing collections : "+ collection_name +", file: " + song);
 
   message.member.voice.channel.join().then((connection) => {
     const dispatcher = connection.play(path.join(__dirname, song))
