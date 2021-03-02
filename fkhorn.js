@@ -45,12 +45,14 @@ bot.on("message", async message => {
   if(collections.list.includes(cmd_name) && args.length == 0){
     let commandFile = bot.commands.get("airhorn")
     if(commandFile) commandFile.run(bot, message, cmd_name)
-  }else if(collections.list.includes(cmd_name) && args.length != 0){
-    let commandFile = bot.commands.get("help")
+  }
+  else if(collections.list.includes(cmd_name) && args.length != 0){
+    let commandFile = bot.commands.get("helpme")
     if(commandFile) commandFile.run(bot, message, "")
-  }else if(cmd_name == "help"){
-    let commandFile = bot.commands.get("help")
-    if(commandFile) commandFile.run(bot, message, "")
+  }
+  else{
+    let commandFile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
+    if(commandFile) commandFile.run(bot, message, args)
   }
 })
 

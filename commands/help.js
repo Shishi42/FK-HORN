@@ -3,10 +3,11 @@ const config = require("../config.json");
 const collections = require("../collections.json");
 
 module.exports.run = async (bot, message, args) => {
-  return message.channel.send('usage : !['+collections.list+']');
+  message.channel.send('Airhorn usage : !['+collections.list+']');
+  return message.channel.send('Command List : [google,help,ping,say,uptime]');
 }
 
 module.exports.config = {
-  name: "help",
-  aliases: ["h"]
+  name: "helpme",
+  aliases: ["h","help"]
 }
