@@ -3,8 +3,9 @@ const config = require("../config.json");
 const collections = require("../collections.json");
 
 module.exports.run = async (bot, message, args) => {
-  str = "```\n"
-  collections.new.forEach(elm){
+
+  str = "```\n"  
+  for (i = 0; i < collections.new.length; i++){
     str += "!"+elm+"\n"
   }
   str += "```"
