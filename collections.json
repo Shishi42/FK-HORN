@@ -1,4 +1,49 @@
 {
-  "list": ["airhorn", "bassem", "besoin", "birthday", "bizarre","bonk", "bruh", "cena", "corrompu", "ctsur", "goodenough", "guerre", "guez", "melokrik", "non", "nulnulnul", "scoop", "sins", "spiderman", "tg", "tire", "trop", "why", "wuhan"]
+  "list": [
+    "ah",
+    "airhorn", 
+    "background",
+    "bassem", 
+    "besoin", 
+    "birthday", 
+    "bizarre",
+    "bonk", 
+    "bruh", 
+    "cena", 
+    "cmoi",
+    "combien",
+    "conseil",
+    "corrompu", 
+    "ctsur",
+    "dehors",
+    "drip",
+    "goodenough", 
+    "guerre", 
+    "guez", 
+    "jerome",
+    "melokrik", 
+    "non", 
+    "nulnulnul", 
+    "openthedoor",
+    "scoop", 
+    "sins", 
+    "spiderman", 
+    "tg", 
+    "tire",
+    "trop",
+    "why", 
+    "wuhan"
+  ]
+    "new": [
+    "ah", 
+    "background", 
+    "conseil",
+    "cmoi", 
+    "combien", 
+    "dehors",
+    "drip", 
+    "jerome", 
+    "openthedoor"
+  ]
 }
 
