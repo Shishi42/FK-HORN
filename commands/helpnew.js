@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
 
   str = "```\n"  
   for (i = 0; i < collections.new.length; i++){
-    str += "!"+elm+"\n"
+    str += "!"+collections.new[i]+"\n"
   }
   str += "```"
   
