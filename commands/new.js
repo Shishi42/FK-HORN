@@ -14,6 +14,6 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.config = {
-  name: "helpnew",
+  name: "new",
   aliases: ["hn","helpnew"]
 }
