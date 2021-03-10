@@ -34,7 +34,15 @@
     "why", 
     "wuhan"
   ],
-    "new": [
+  "commands": [
+    "google", 
+    "help", 
+    "helpnew",
+    "ping", 
+    "say", 
+    "uptime"
+  ],
+  "new": [
     "ah", 
     "background", 
     "conseil",
