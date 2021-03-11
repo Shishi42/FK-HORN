@@ -1,10 +1,12 @@
 {
   "list": [
     "ah",
-    "airhorn", 
+    "airhorn",
+    "aurevoir",
     "background",
     "bassem", 
     "besoin", 
+    "bigard",
     "birthday", 
     "bizarre",
     "bonk", 
@@ -17,10 +19,12 @@
     "ctsur",
     "dehors",
     "drip",
+    "giorno",
     "goodenough", 
     "guerre", 
     "guez", 
     "jerome",
+    "maillonfaible",
     "melokrik", 
     "non", 
     "nulnulnul", 
@@ -44,16 +48,10 @@
     "uptime"
   ],
   "new": [
-    "ah", 
-    "background", 
-    "conseil",
-    "cmoi", 
-    "combien", 
-    "dehors",
-    "drip", 
-    "jerome", 
-    "openthedoor",
-    "rompiche"
+    "aurevoir", 
+    "bigard", 
+    "giorno",
+    "maillonfaible"
   ]
 }
 
