@@ -1,17 +1,17 @@
 const Discord = require("discord.js")
 const config = require("../config.json");
-const collections = require("../collections.json");
+const new_sounds = require("../new.json");
 
 module.exports.run = async (bot, message, args) => {
 
-  str = "```\n"  
-  for (i = 0; i < collections.new.length; i++){
-    str += "!"+collections.new[i]+"\n"
+  str = "```\n"
+  for (i = 0; i < new_sounds.list.length; i++){
+    str += "!"+new_sounds.list[i]+"\n"
   }
   str += "```"
-  
-  message.channel.send('New sounds ('+collections.new.length+') : \n'+str);
-  
+
+  message.channel.send('New sounds ('+new_sounds.list.length+') : \n'+str);
+
   return message.delete()
 }
 

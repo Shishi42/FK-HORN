@@ -1,6 +1,6 @@
 {
   "name": "FK-HORN",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "description": "Discord BOT for FKÆON",
   "main": "fkhorn.js",
   "scripts": {

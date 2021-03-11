@@ -1,14 +1,14 @@
 const Discord = require("discord.js");
 
 const bot = new Discord.Client();
-const config = require("./config.json");
-const collections = require("./collections.json");
-
 const jsonfile = require ("jsonfile")
-
 const fs = require("fs");
+
+const config = require("./config.json");
+
 bot.commands = new Discord.Collection()
 bot.aliases = new Discord.Collection()
+bot.sound_collections = []
 
 fs.readdir("./commands/", (err, files) => {
 
@@ -31,6 +31,8 @@ fs.readdir("./commands/", (err, files) => {
 
 bot.on("ready", async () => {
   console.log(`Connecté en tant que ${bot.user.tag}!`);
+  try {updateCollections()}
+  catch(error) {console.error(error);}
 })
 
 bot.on("message", async message => {
@@ -42,18 +44,19 @@ bot.on("message", async message => {
   let cmd_name = cmd.slice(prefix.length)
   let args = messageArray.slice(1)
 
-  if(collections.list.includes(cmd_name) && args.length == 0){
+  if(bot.sound_collections.includes(cmd_name) && args.length == 0){
     let commandFile = bot.commands.get("airhorn")
     if(commandFile) commandFile.run(bot, message, cmd_name)
-  }
-  else if(collections.list.includes(cmd_name) && args.length != 0){
-    let commandFile = bot.commands.get("helpme")
-    if(commandFile) commandFile.run(bot, message, "")
   }
   else{
     let commandFile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
     if(commandFile) commandFile.run(bot, message, args)
   }
 })
+
+function updateCollections(){
+  bot.sound_collections = fs.readdirSync("./commands/audio/")
+  //console.log("Getting collections : "+bot.sound_collections)
+}
 
 bot.login(config.token);
