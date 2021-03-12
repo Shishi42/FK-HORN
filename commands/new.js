@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   }
   str += "```"
 
-  message.channel.send('New sounds ('+new_sounds.list.length+') : \n'+str);
+  message.channel.send('New sounds ('+(new_sounds.list.length-2)+') : \n'+str);
 
   return message.delete()
 }
