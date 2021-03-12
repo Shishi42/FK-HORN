@@ -6,7 +6,8 @@ module.exports.run = async (bot, message, args) => {
 
   str = "```\n"
   for (i = 0; i < new_sounds.list.length; i++){
-    str += "!"+new_sounds.list[i]+"\n"
+    if(i == new_sounds.list.length-1 || i == new_sounds.list.length-2) str += new_sounds.list[i]+"\n"
+    else str += "!"+new_sounds.list[i]+"\n"
   }
   str += "```"
 
