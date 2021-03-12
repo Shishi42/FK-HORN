@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
     if(temp.length > 1) str_snd += "!"+bot.sound_collections[i]+" (*)\n"
     else str_snd += "!"+bot.sound_collections[i]+"\n"
   }
-  str_snd += "```"
+  str_snd += "---------------------\n(*) = collection\n```"
 
   str_cmd = "```\n"
   for (i = 0; i < commands.length; i++){
