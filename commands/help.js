@@ -8,7 +8,9 @@ module.exports.run = async (bot, message, args) => {
 
   str_snd = "```\n"
   for (i = 0; i < bot.sound_collections.length; i++){
-    str_snd += "!"+bot.sound_collections[i]+"\n"
+    temp = fs.readdirSync(path.join(__dirname, "/audio/"+bot.sound_collections[i]))
+    if(temp.length > 1) str_snd += "!"+bot.sound_collections[i]+"(*)\n"
+    else str_snd += "!"+bot.sound_collections[i]+"\n"
   }
   str_snd += "```"
 
