@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
    isSomethingReset = true
   }
   
-  if(isSomethingReset) message.channel.send("you have reseted +"args[0]+".")
+  if(isSomethingReset) message.channel.send("you have reseted "+args[0]+".")
 }
 
 module.exports.config = {
