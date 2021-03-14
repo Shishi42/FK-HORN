@@ -18,9 +18,9 @@ module.exports.run = async (bot, message, args) => {
       
     embed.setAuthor((args[0].charAt(0).toUpperCase() + args[0].slice(1))+" Command Help", bot.user.displayAvatarURL(), "")
     embed.setDescription([
-      `**> Description:** ${bot.commands.get(args[0]).config.desc}`  
-      `**> Aliases:** ${bot.commands.get(args[0]).config.aliases}`
-      `**> Possible Arguments:** ${bot.commands.get(args[0]).config.args}`
+      "**> Description:** "+bot.commands.get(args[0]).config.desc"
+      "**> Aliases:** "+bot.commands.get(args[0]).config.aliases"
+      "**> Possible Arguments:** "+bot.commands.get(args[0]).config.args"
     ])
     
     
