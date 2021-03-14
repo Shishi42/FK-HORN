@@ -9,6 +9,6 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "google",
   aliases: ["google","gg","search"],
-  desc: "returns google search in a message",
-  args: ["<search>"]
+  args: ["<search>"],
+  desc: "returns google search in a message"
 }
