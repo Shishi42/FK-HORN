@@ -31,5 +31,6 @@ module.exports.config = {
   name: "reset",
   aliases: ["rst","rs"],
   args: ["logs","stats","all"],
-  desc: "Reset the arg (only for bot owner)"
+  usage: ["reset <arg>"],
+  desc: "Reset the specified arg (only for bot owner)."
 }
