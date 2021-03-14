@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
   name: "say",
-  aliases: ["echo","tell"],
+  aliases: ["echo","tell","print"],
   desc: "prints the argument in a message",
   args: [""]
 }
