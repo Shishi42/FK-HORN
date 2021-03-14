@@ -6,21 +6,16 @@ const path = require('path')
 
 module.exports.run = async (bot, message, args) => {
     
-  const embed = new Discord.MessageEmbed()
-      .setColor('#553380')
-      .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
-      .setTimestamp()
-      .setAuthor(bot.user.username+' Sound List', bot.user.displayAvatarURL(), "");
-    
-      str = ""
-      for (i = 0; i < bot.sound_collections.length; i++){
-        temp = fs.readdirSync(path.join(__dirname, "/audio/"+bot.sound_collections[i]))
-        if(temp.length > 1) str += config.prefix+bot.sound_collections[i]+ " ("+temp.length+") sounds.\n"
-        else str += config.prefix+bot.sound_collections[i]+"\n"
-      } 
-      embed.addField(str, '\u200b') 
-  
-  message.channel.send(embed)
+  str_snd = "```\n"
+  for (i = 0; i < bot.sound_collections.length; i++){
+    temp = fs.readdirSync(path.join(__dirname, "/audio/"+bot.sound_collections[i]))
+    if(temp.length > 1) str_snd += "!"+bot.sound_collections[i]+" ("+temp.length+" sounds)\n"
+    else str_snd += "!"+bot.sound_collections[i]+"\n"
+  }
+  str_snd += "---------------------\n(*) = collection\n```"
+
+  message.channel.send('Airhorn sound list ('+bot.sound_collections.length+') : \n'+str_snd)
+
   return message.delete()
 }
 
