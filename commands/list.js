@@ -6,7 +6,7 @@ const path = require('path')
 
 module.exports.run = async (bot, message, args) => {
     
-  str_snd = "```\n"
+  str_snd = "```\nSound List ("+bot.sound_collections.length+1+").\n)"
   for (i = 0; i < bot.sound_collections.length; i++){
     temp = fs.readdirSync(path.join(__dirname, "/audio/"+bot.sound_collections[i]))
     if(temp.length > 1) str_snd += "!"+bot.sound_collections[i]+" ("+temp.length+" sounds)\n"
