@@ -7,10 +7,23 @@ module.exports.run = async (bot, message, args) => {
 
   if (message.member != config.bot_owner) return message.channel.send('You are not the bot owner!')
   
-  if(args[0] == "logs") fs.unlink("logs.txt", function(err) {})
-  if(args[0] == "stats") fs.unlink("stats.json", function(err) {})
+  isSomethingReset = false
   
-  if(args[0] == "logs" || args[0] == "stats") message.channel.send(args[0]+" reset.")
+  if(args[0] == "logs"){
+    fs.unlink("logs.txt", function(err) {})
+    isSomethingReset = true
+  }
+  if(args[0] == "stats"){
+    fs.unlink("stats.json", function(err) {})
+    isSomethingReset = true
+  }  
+ if(args[0] == "all"){
+   fs.unlink("logs.txt", function(err) {})
+   fs.unlink("stats.json", function(err) {})
+   isSomethingReset = true
+ }
+  
+  if(isSomethingReset) message.channel.send("you have reseted +"args[0]+".")
 }
 
 module.exports.config = {
