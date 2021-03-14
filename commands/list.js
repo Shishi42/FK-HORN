@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
           console.log(str) 
       }
         
-      console.log(str)  
+      console.log("final : "+str)  
       embed.addField(str, '\u200b') 
   
   message.channel.send(embed)
