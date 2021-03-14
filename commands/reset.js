@@ -24,6 +24,7 @@ module.exports.run = async (bot, message, args) => {
   }
   
   if(isSomethingReset) message.channel.send(args[0]+" successfully reset.")
+  else message.channel.send("Argument error, nothing reset.")
 }
 
 module.exports.config = {
