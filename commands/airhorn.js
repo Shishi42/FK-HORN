@@ -63,6 +63,6 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "airhorn",
   aliases: [],
-  desc: "connects to your voice channel and plays the selected sound",
-  args: [""]
+  args: [""],
+  desc: "connects to your voice channel and plays the selected sound"
 }
