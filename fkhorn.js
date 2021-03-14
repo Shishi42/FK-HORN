@@ -21,8 +21,10 @@ fs.readdir("./commands/", (err, files) => {
   if(jsfile.length <= 0){
     return console.log("[LOGS] commands not found!")
   }
-
+  
+  console.log("[LOGS] commands found :")
   jsfile.forEach((f, i) => {
+    console.log(f)
     let pull = require(`./commands/${f}`)
     bot.commands.set(pull.config.name, pull)
     pull.config.aliases.forEach(alias => {
