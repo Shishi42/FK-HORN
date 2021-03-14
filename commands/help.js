@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
     
     const embed = new Discord.MessageEmbed()
       .setColor('#553380')
-      .setAuthor(bot.user.name+' Help Menu', '', bot.user.displayAvatarURL())
+      .setAuthor(bot.name+' Help Menu', '', bot.displayAvatarURL())
       .setFooter(`Requested by ${message.author.username}`, 'https://i.imgur.com/wSTFkRM.png')
       .setTimestamp();
     
