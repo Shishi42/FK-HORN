@@ -26,11 +26,11 @@ module.exports.run = async (bot, message, args) => {
     
     embed.setAuthor(bot.user.username+' Help Menu', bot.user.displayAvatarURL(), "")
     embed.setDescription([
-				`Available commands for $bot.user.username}`,
-				`The bot's prefix is: ${config.prefix}`
-			]);
+	`Available commands for $bot.user.username}`,
+	`The bot's prefix is: ${config.prefix}`
+	]);
     for (i = 0; i < commands.length; i++){
-      embed.addField("", commands[i])
+      embed.addField(commands[i], "")
     }
   }
   
