@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const config = require("../config.json");
+const config = require("../config.json")
 
 module.exports.run = async (bot, message, args) => {
 
@@ -11,6 +11,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
   name: "pg",
-  aliases: ["ping"]
-
+  aliases: ["ping","p"]
+  desc: "prints the bot ping in a message",
+  args: [""]
 }
