@@ -11,12 +11,11 @@ module.exports.run = async (bot, message, args) => {
   if(commands.includes(args[0])){
      str = "```\n"
      str += "command : "+args[0]+"\n"
-     str += "aliases : "+bot.aliases.get(args[0])+"\n"
+     str += "aliases : "+bot.commands.get(args[0]).config.aliases+"\n"
      str += "possible argument : "+bot.args.get(args[0])+"\n"
      str += "description : "+bot.desc.get(args[0])+"\n"
      str += "```"
     
-     console.log(bot.aliases.keys.find(key => bot.aliases[key] === args[0]))
      message.channel.send(str)  
   }else{
 
