@@ -1,7 +1,8 @@
 const Discord = require("discord.js")
-const config = require("../config.json");
-const fs = require("fs");
-const path = require('path');
+const config = require("../config.json")
+
+const fs = require("fs")
+const path = require('path')
 
 module.exports.run = async (bot, message, args) => {
 
@@ -13,12 +14,14 @@ module.exports.run = async (bot, message, args) => {
   }
   str_snd += "---------------------\n(*) = collection\n```"
 
-  message.channel.send('Airhorn sound list ('+bot.sound_collections.length+') : \n'+str_snd);
+  message.channel.send('Airhorn sound list ('+bot.sound_collections.length+') : \n'+str_snd)
 
   return message.delete()
 }
 
 module.exports.config = {
   name: "list",
-  aliases: ["l"]
+  aliases: ["l"],
+  desc: "prints the list of sounds in a message",
+  args: [""]
 }
