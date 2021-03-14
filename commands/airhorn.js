@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
     date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
     logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+message.channel.guild.name+"/"+message.channel.name+" | by "+message.author.tag+"."
 
-    fs.appendFile('logs.txt', logs+"\n", function (err){});
+    fs.appendFileSync('logs.txt', logs+"\n", function (err){});
 
     console.log(logs);
   }
@@ -55,7 +55,7 @@ module.exports.run = async (bot, message, args) => {
     }
     if(stats[collection_name] == undefined) stats[collection_name] = 1
     else stats[collection_name] += 1    
-    fs.appendFile("stats.json", JSON.stringify(stats, null, 4), function(err) {})
+    fs.appendFileSync("stats.json", JSON.stringify(stats, null, 4), function(err) {})
   }
 }
 
