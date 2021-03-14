@@ -18,8 +18,8 @@ module.exports.run = async (bot, message, args) => {
     embed.setAuthor((args[0].charAt(0).toUpperCase() + args[0].slice(1))+" Command Help", bot.user.displayAvatarURL(), "")
     embed.setDescription([
       `**❯ Description:** ${bot.commands.get(args[0]).config.desc}`,
-      `**❯ Aliases:** ${bot.commands.get(args[0]).config.args.length ? bot.commands.get(args[0]).config.args.map(alias => `\`${alias}\``).join(' ') : 'No Aliases'}`,
-      `**❯ Arguments:** ${bot.commands.get(args[0]).config.args}`,
+      `**❯ Aliases:** ${bot.commands.get(args[0]).config.aliases.length ? bot.commands.get(args[0]).config.aliases.map(alias => `\`${alias}\``).join(' ') : 'No Aliases'}`,
+      `**❯ Arguments:** ${bot.commands.get(args[0]).config.args.length ? bot.commands.get(args[0]).config.args.map(args => `\`${args}\``).join(' ') : 'No Args'}`,
      // `**❯ Usage:** ${bot.commands.get(args[0]).config.usage}`	    
     ])
   }else{
