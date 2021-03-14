@@ -9,10 +9,10 @@ module.exports.run = async (bot, message, args) => {
     const hrs = Math.floor((ms / (1000 * 60 * 60)) % 24).toString()
     const days = Math.floor((ms / (1000 * 60 * 60 * 24))).toString()
 
-    return `${days.padStart(1, '0')} jours, ${hrs.padStart(2, '0')} heures, ${min.padStart(2, '0')} minutes, ${sec.padStart(2, '0')} secondes`
+    return `${days.padStart(1, '0')} days, ${hrs.padStart(2, '0')} hours, ${min.padStart(2, '0')} minutes, ${sec.padStart(2, '0')} seconds.`
   }
 
-  message.channel.send(`Je suis en ligne depuis ${duration(bot.uptime)}`)
+  message.channel.send(`Online since ${duration(bot.uptime)}`)
 }
 
 module.exports.config = {
