@@ -50,21 +50,8 @@ module.exports.run = async (bot, message, args) => {
   function stats(collection_name){
     if(fs.existsSync("stats.json")) stats = jsonfile.readFileSync("stats.json")
     if(stats[collection_name] == undefined) stats[collection_name] = 1
-    else stats[collection_name] += 1
-    
-    temp = []
-    for(var i in stats) temp.push([i, stats[i]])
-    
-    console.log(temp);
-    
-    temp.sort(function(a, b) {
-      return temp[a][1] > temp[b][1];
-    });
-    
-    console.log(temp);
-    
+    else stats[collection_name] += 1    
     fs.writeFile("stats.json", JSON.stringify(stats, null, 4), function(err) {})
-     //fs.writeFile("test.json", JSON.stringify(temp, null, 4), function(err) {})   
   }
 }
 
