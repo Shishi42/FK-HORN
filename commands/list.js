@@ -14,9 +14,11 @@ module.exports.run = async (bot, message, args) => {
     
       for (i = 0; i < bot.sound_collections.length; i++){
         temp = fs.readdirSync(path.join(__dirname, "/audio/"+bot.sound_collections[i]))
-        if(temp.length > 1) embed.addField(config.prefix+bot.sound_collections[i]+ " ("+temp.length+") sounds.", '\u200b')
-        else embed.addField(config.prefix+bot.sound_collections[i], '\u200b')
+        if(temp.length > 1) str = config.prefix+bot.sound_collections[i]+ " ("+temp.length+") sounds."
+        else str = config.prefix+bot.sound_collections[i]
       }
+    
+      embed.addField(str, '\u200b') 
   
   message.channel.send(embed)
   return message.delete()
