@@ -28,12 +28,10 @@ fs.readdir("./commands/", (err, files) => {
     pull.config.aliases.forEach(alias => {
       bot.aliases.set(alias, pull.config.name)
     })
-    pull.config.desc.forEach(desc => {
-      bot.desc.set(desc, pull.config.name)
-    })
     pull.config.args.forEach(args => {
       bot.args.set(args, pull.config.name)
     })
+    bot.desc.set(pull.config.desc, pull.config.name)
   })
 })
 
