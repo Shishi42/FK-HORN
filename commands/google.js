@@ -10,6 +10,6 @@ module.exports.config = {
   name: "google",
   aliases: ["google","gg","search"],
   args: ["<search>"],
-  usage: "google <search>",
+  usage: ["google <search>"],
   desc: "Send google link with your search"
 }
