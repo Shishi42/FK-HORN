@@ -12,5 +12,6 @@ module.exports.config = {
   name: "say",
   aliases: ["echo","tell","print"],
   args: [""],
-  desc: "prints the argument in a message"
+  usage: ["say <message>"],
+  desc: "Resend the specified message and delete the original."
 }
