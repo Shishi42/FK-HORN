@@ -11,5 +11,5 @@ module.exports.config = {
   aliases: ["google","gg","search"],
   args: ["<search>"],
   usage: ["google <search>"],
-  desc: "Send google link with your search"
+  desc: "Send google link with your search."
 }
