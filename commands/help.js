@@ -18,14 +18,15 @@ module.exports.run = async (bot, message, args) => {
     embed.setAuthor((args[0].charAt(0).toUpperCase() + args[0].slice(1))+" Command Help", bot.user.displayAvatarURL(), "")
     embed.setDescription([
       `**❯ Description:** ${bot.commands.get(args[0]).config.desc}`,
-      `**❯ Aliases:** ${bot.commands.get(args[0]).config.aliases}`,
-      `**❯ Arguments:** ${bot.commands.get(args[0]).config.args}`
+      `**❯ Aliases:** ${bot.commands.get(args[0]).config.args.length ? bot.commands.get(args[0]).config.args.map(alias => `\`${alias}\``).join(' ') : 'No Aliases'}`,
+      `**❯ Arguments:** ${bot.commands.get(args[0]).config.args}`,
+     // `**❯ Usage:** ${bot.commands.get(args[0]).config.usage}`	    
     ])
   }else{
     
     embed.setAuthor(bot.user.username+' Help Menu', bot.user.displayAvatarURL(), "")
     embed.setDescription([
-	`Available commands for $bot.user.username}`,
+	`Available commands for ${bot.user.username}`,
 	`The bot's prefix is: ${config.prefix}`
 	]);
     for (i = 0; i < commands.length; i++){
