@@ -1,11 +1,12 @@
 const Discord = require("discord.js")
-const config = require("../config.json");
-const fs = require("fs");
-const path = require('path');
+const config = require("../config.json")
+
+const fs = require("fs")
+const path = require('path')
 
 module.exports.run = async (bot, message, args) => {
 
-  commands = Array.from(bot.commands.keys());
+  commands = Array.from(bot.commands.keys())
 
   str_snd = "```\n"
   for (i = 0; i < bot.sound_collections.length; i++){
@@ -21,13 +22,15 @@ module.exports.run = async (bot, message, args) => {
   }
   str_cmd += "```"
 
-  message.channel.send('Airhorn sound list ('+bot.sound_collections.length+') : \n'+str_snd);
-  message.channel.send('Command list ('+commands.length+') : \n'+str_cmd);
+  message.channel.send('Airhorn sound list ('+bot.sound_collections.length+') : \n'+str_snd)
+  message.channel.send('Command list ('+commands.length+') : \n'+str_cmd)
 
   return message.delete()
 }
 
 module.exports.config = {
   name: "help",
-  aliases: ["h","helpme"]
+  aliases: ["h","helpme"],
+  desc: "prints the commands and list of sounds in a message",
+  args: ["<commands>"]
 }
