@@ -12,16 +12,12 @@ module.exports.run = async (bot, message, args) => {
       .setTimestamp()
       .setAuthor(bot.user.username+' Sound List', bot.user.displayAvatarURL(), "");
     
+      str = ""
       for (i = 0; i < bot.sound_collections.length; i++){
-        str = ""
-        console.log(str) 
         temp = fs.readdirSync(path.join(__dirname, "/audio/"+bot.sound_collections[i]))
         if(temp.length > 1) str += config.prefix+bot.sound_collections[i]+ " ("+temp.length+") sounds.\n"
         else str += config.prefix+bot.sound_collections[i]+"\n"
-          console.log(str) 
-      }
-        
-      console.log("final : "+str)  
+      } 
       embed.addField(str, '\u200b') 
   
   message.channel.send(embed)
