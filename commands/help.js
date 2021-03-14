@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   commands = Array.from(bot.commands.keys())
   
   if(args[0] != undefined){
-    if(commands.includes(args[0]){
+    if(commands.includes(args[0])){
        str = "```\n"
        str += "command : "+args[0]
        str += "aliases : "+bot.commands.get(bot.aliases.get(args[0]))
