@@ -1,13 +1,15 @@
-const Discord = require("discord.js");
+const Discord = require("discord.js")
+const config = require("./config.json")
+const bot = new Discord.Client()
 
-const bot = new Discord.Client();
 const jsonfile = require ("jsonfile")
-const fs = require("fs");
-
-const config = require("./config.json");
+const fs = require("fs")
 
 bot.commands = new Discord.Collection()
 bot.aliases = new Discord.Collection()
+bot.desc = new Discord.Collection()
+bot.args = new Discord.Collection()
+
 bot.sound_collections = []
 
 fs.readdir("./commands/", (err, files) => {
@@ -17,7 +19,7 @@ fs.readdir("./commands/", (err, files) => {
   let jsfile = files.filter(f => f.split(".").pop() === "js")
 
   if(jsfile.length <= 0){
-    return console.log("[LOGS] ne trouve pas de commandes!");
+    return console.log("[LOGS] ne trouve pas de commandes!")
   }
 
   jsfile.forEach((f, i) => {
@@ -26,17 +28,23 @@ fs.readdir("./commands/", (err, files) => {
     pull.config.aliases.forEach(alias => {
       bot.aliases.set(alias, pull.config.name)
     })
+    pull.config.desc.forEach(desc => {
+      bot.desc.set(desc, pull.config.name)
+    })
+    pull.config.args.forEach(args => {
+      bot.args.set(args, pull.config.name)
+    })
   })
 })
 
 bot.on("ready", async () => {
-  console.log(`Connecté en tant que ${bot.user.tag}!`);
+  console.log(`Connecté en tant que ${bot.user.tag}!`)
   try {updateCollections()}
-  catch(error) {console.error(error);}
+  catch(error) {console.error(error)}
 })
 
 bot.on("message", async message => {
-  if (message.author.bot || message.channel.type === "dm" || !message.content.startsWith(config.prefix)) return;
+  if (message.author.bot || message.channel.type === "dm" || !message.content.startsWith(config.prefix)) return
 
   let prefix = config.prefix
   let messageArray = message.content.split(" ")
