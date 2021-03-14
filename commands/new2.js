@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
       .setAuthor(bot.user.username+' new sounds', bot.user.displayAvatarURL(), "");
   
       for (i = 0; i < new_sounds.list.length; i++){
-        else embed.addField(config.prefix+new_sounds.list[i], '\u200b')	  
+        embed.addField(config.prefix+new_sounds.list[i], '\u200b')	  
       }
       embed.addField("Info", "(*) = collection, (new) = nouveau sons dans une collection")	
   }
