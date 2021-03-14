@@ -13,10 +13,12 @@ module.exports.run = async (bot, message, args) => {
       .setAuthor(bot.user.username+' Sound List', bot.user.displayAvatarURL(), "");
     
       for (i = 0; i < bot.sound_collections.length; i++){
-        str = ""  
+        str = ""
+        console.log(str) 
         temp = fs.readdirSync(path.join(__dirname, "/audio/"+bot.sound_collections[i]))
         if(temp.length > 1) str += config.prefix+bot.sound_collections[i]+ " ("+temp.length+") sounds.\n"
         else str += config.prefix+bot.sound_collections[i]+"\n"
+          console.log(str) 
       }
         
       console.log(str)  
