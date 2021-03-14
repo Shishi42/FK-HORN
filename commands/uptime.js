@@ -13,11 +13,11 @@ module.exports.run = async (bot, message, args) => {
   }
 
   message.channel.send(`Je suis en ligne depuis ${duration(bot.uptime)}`)
-
 }
 
 module.exports.config = {
   name: "uptime",
-  aliases: ["upt","up","ut"]
-
+  aliases: ["upt","up","ut"],
+  desc: "prints how long the bot is up in a message",
+  args: [""]
 }
