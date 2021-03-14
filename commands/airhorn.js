@@ -50,8 +50,8 @@ module.exports.run = async (bot, message, args) => {
   function stats(collection_name){
     if(fs.existsSync("stats.json")) stats = jsonfile.readFileSync("stats.json")
     else{
-      fs.appendFile("stats.json", "{}", function(err) {})
-      stats = jsonfile.readFileSync("stats.json")
+      fs.appendFile("stats.json", "", function(err) {})
+      stats = []
     }
     if(stats[collection_name] == undefined) stats[collection_name] = 1
     else stats[collection_name] += 1    
