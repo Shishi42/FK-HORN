@@ -14,12 +14,12 @@ module.exports.run = async (bot, message, args) => {
     isSomethingReset = true
   }
   if(args[0] == "stats"){
-    fs.appendFileSync("stats.json", "{}", function(err) {})
+    fs.appendFileSync("stats.json", "", function(err) {})
     isSomethingReset = true
   }  
   if(args[0] == "all"){
    fs.unlink("logs.txt", function(err) {})
-   fs.appendFileSync("stats.json", "{}", function(err) {})
+   fs.appendFileSync("stats.json", "", function(err) {})
    isSomethingReset = true
   }
   
