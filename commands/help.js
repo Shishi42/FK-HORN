@@ -21,7 +21,6 @@ module.exports.run = async (bot, message, args) => {
       `**❯ Aliases:** ${bot.commands.get(args[0]).config.aliases}`,
       `**❯ Arguments:** ${bot.commands.get(args[0]).config.args}`
     ])
-    
   }else{
     
     embed.setAuthor(bot.user.username+' Help Menu', bot.user.displayAvatarURL(), "")
@@ -30,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
 	`The bot's prefix is: ${config.prefix}`
 	]);
     for (i = 0; i < commands.length; i++){
-      embed.addField(commands[i], "")
+      embed.addField(commands[i], bot.commands.get(commands[i]).config.desc)
     }
   }
   
