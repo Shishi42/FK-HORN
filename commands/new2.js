@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
-const config = require("../config.json");
-const new_sounds = require("../new.json");
+const config = require("../config.json")
+
+const new_sounds = require("../new.json")
 
 module.exports.run = async (bot, message, args) => {
 
@@ -11,12 +12,14 @@ module.exports.run = async (bot, message, args) => {
   }
   str += "```"
 
-  message.channel.send('New sounds ('+(new_sounds.list.length-2)+') : \n'+str);
+  message.channel.send('New sounds ('+(new_sounds.list.length-2)+') : \n'+str)
 
   return message.delete()
 }
 
 module.exports.config = {
   name: "new",
-  aliases: ["hn","helpnew","n"]
+  aliases: ["hn","helpnew","n"],
+  args: [""],
+  desc: "prints the list of new sounds in a message"
 }
