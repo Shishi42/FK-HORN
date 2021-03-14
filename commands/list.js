@@ -18,7 +18,8 @@ module.exports.run = async (bot, message, args) => {
         if(temp.length > 1) str += config.prefix+bot.sound_collections[i]+ " ("+temp.length+") sounds.\n"
         else str += config.prefix+bot.sound_collections[i]+"\n"
       }
-    
+        
+      console.log(str)  
       embed.addField(str, '\u200b') 
   
   message.channel.send(embed)
