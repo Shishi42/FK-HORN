@@ -22,9 +22,6 @@ module.exports.run = async (bot, message, args) => {
       `**❯ Arguments:** ${(bot.commands.get(args[0]).config.args.length != 0) ? bot.commands.get(args[0]).config.args.map(args => `\`${args}\``).join(' ') : 'No Args'}`,
      // `**❯ Usage:** ${bot.commands.get(args[0]).config.usage}`	    
     ])
-	  console.log(bot.commands.get(args[0]).config.aliases.length)
-	
-	  console.log(bot.commands.get(args[0]).config.args.length)
   }else{
     
     embed.setAuthor(bot.user.username+' Help Menu', bot.user.displayAvatarURL(), "")
