@@ -51,6 +51,7 @@ module.exports.run = async (bot, message, args) => {
     if(fs.existsSync("stats.json")) stats = jsonfile.readFileSync("stats.json")
     if(stats[collection_name] == undefined) stats[collection_name] = 1
     else stats[collection_name] += 1
+    console.log(typeof stats);
     
     stats.sort(function(a, b) {
       return stats[a] > stats[b];
