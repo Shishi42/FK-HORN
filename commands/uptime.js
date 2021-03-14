@@ -19,5 +19,6 @@ module.exports.config = {
   name: "uptime",
   aliases: ["upt","up","ut"],
   args: [""],
-  desc: "returns since when the bot is up in a message"
+  usage: ["uptime"],
+  desc: "Say since when the bot is up in a message."
 }
