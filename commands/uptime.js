@@ -18,6 +18,6 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "uptime",
   aliases: ["upt","up","ut"],
-  desc: "prints how long the bot is up in a message",
+  desc: "returns since when the bot is up in a message",
   args: [""]
 }
