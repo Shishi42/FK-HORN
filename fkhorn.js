@@ -7,8 +7,6 @@ const fs = require("fs")
 
 bot.commands = new Discord.Collection()
 bot.aliases = new Discord.Collection()
-bot.args = new Discord.Collection()
-bot.desc = new Discord.Collection()
 
 bot.sound_collections = []
 
@@ -30,10 +28,6 @@ fs.readdir("./commands/", (err, files) => {
     pull.config.aliases.forEach(alias => {
       bot.aliases.set(alias, pull.config.name)
     })
-    pull.config.args.forEach(args => {
-      bot.args.set(args, pull.config.name)
-    })
-    bot.desc.set(pull.config.desc, pull.config.name)
   })
 })
 
