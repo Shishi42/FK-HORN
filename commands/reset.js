@@ -7,8 +7,8 @@ module.exports.run = async (bot, message, args) => {
 
   if (!message.member != config.bot_owner) return message.channel.send('You are not the Bot Owner !')
   
-  if(args[0] == "logs") fs.unlink("logs.txt", function(err))
-  if(args[0] == "stats") fs.unlink("stats.json", function(err))
+  if(args[0] == "logs") fs.unlink("logs.txt", function(err) {})
+  if(args[0] == "stats") fs.unlink("stats.json", function(err) {})
   
   if(args[0] == "logs" || args[0] == "stats") message.channel.send(args[0]+" reset.")
 }
