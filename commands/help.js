@@ -41,6 +41,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "help",
   aliases: ["h","helpme"],
-  args: ["<commands>"],
-  desc: "prints the commands and list of sounds in a message"
+  args: ["<command>"],
+  usage: ["help", "help <command>"],
+  desc: "Display command list or specified command info."
 }
