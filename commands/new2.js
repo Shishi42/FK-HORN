@@ -4,16 +4,20 @@ const config = require("../config.json")
 const new_sounds = require("../new.json")
 
 module.exports.run = async (bot, message, args) => {
-
-  str = "```\n"
-  for (i = 0; i < new_sounds.list.length; i++){
-    if(i == new_sounds.list.length-1 || i == new_sounds.list.length-2) str += new_sounds.list[i]+"\n"
-    else str += "!"+new_sounds.list[i]+"\n"
+  
+  const embed = new Discord.MessageEmbed()
+      .setColor('#553380')
+      .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
+      .setTimestamp();
+      .setAuthor(bot.user.username+' new sounds', bot.user.displayAvatarURL(), "")
+  
+      for (i = 0; i < (new_sounds.list.length-1); i++){
+        else embed.addField(config.prefix+new_sounds.list[i], '\u200b')	  
+      }
+      embed.addField("Info", "(*) = collection, (new) = nouveau sons dans une collection")	
   }
-  str += "```"
-
-  message.channel.send('New sounds ('+(new_sounds.list.length-2)+') : \n'+str)
-
+  
+  message.channel.send(embed)
   return message.delete()
 }
 
