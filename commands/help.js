@@ -9,15 +9,11 @@ module.exports.run = async (bot, message, args) => {
   commands = Array.from(bot.commands.keys())
   
   if(commands.includes(args[0])){
-    //console.log(bot.commands)
-    console.log(bot.commands.get(args[0]))
-        console.log(bot.commands.get(args[0]).config)
-         console.log(bot.commands.get(args[0]).config.aliases)
      str = "```\n"
      str += "command : "+args[0]+"\n"
      str += "aliases : "+bot.commands.get(args[0]).config.aliases+"\n"
-     str += "possible argument : "+bot.args.get(args[0])+"\n"
-     str += "description : "+bot.desc.get(args[0])+"\n"
+     str += "possible argument : "+bot.commands.get(args[0]).config.args+"\n"
+     str += "description : "+bot.commands.get(args[0]).config.desc+"\n"
      str += "```"
     
      message.channel.send(str)  
