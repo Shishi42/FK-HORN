@@ -17,11 +17,11 @@ module.exports.run = async (bot, message, args) => {
     fs.unlink("stats.json", function(err) {})
     isSomethingReset = true
   }  
- if(args[0] == "all"){
+  if(args[0] == "all"){
    fs.unlink("logs.txt", function(err) {})
    fs.unlink("stats.json", function(err) {})
    isSomethingReset = true
- }
+  }
   
   if(isSomethingReset) message.channel.send("you have reseted +"args[0]+".")
 }
