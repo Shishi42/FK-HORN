@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
     //console.log(bot.commands)
     console.log(bot.commands.get(args[0]))
         console.log(bot.commands.get(args[0]).config)
-    console.log(bot.commands.get(args[0]).config.get(aliases))
+         console.log(bot.commands.get(args[0]).config.aliases)
      str = "```\n"
      str += "command : "+args[0]+"\n"
      str += "aliases : "+bot.commands.get(args[0]).config.aliases+"\n"
