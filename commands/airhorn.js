@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
     else stats[collection_name] += 1
     
     temp = []
-    for(var i in stats) temp.push([i, stats[i])
+    for(var i in stats) temp.push([i, stats[i]])
     
     console.log(temp);
     
