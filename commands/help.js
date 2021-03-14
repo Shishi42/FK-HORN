@@ -10,7 +10,6 @@ module.exports.run = async (bot, message, args) => {
   
   const embed = new Discord.MessageEmbed()
       .setColor('#553380')
-      .setAuthor(bot.user.username+' Help Menu', bot.user.displayAvatarURL(), "")
       .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
       .setTimestamp();
   
@@ -18,33 +17,24 @@ module.exports.run = async (bot, message, args) => {
       
     embed.setAuthor((args[0].charAt(0).toUpperCase() + args[0].slice(1))+" Command Help", bot.user.displayAvatarURL(), "")
     embed.setDescription([
-      `**=> Description:** ${bot.commands.get(args[0]).config.desc}`,
-      `**=> Aliases:** ${bot.commands.get(args[0]).config.aliases}`,
-      `**=> Arguments:** ${bot.commands.get(args[0]).config.args}`
+      `**❯ Description:** ${bot.commands.get(args[0]).config.desc}`,
+      `**❯ Aliases:** ${bot.commands.get(args[0]).config.aliases}`,
+      `**❯ Arguments:** ${bot.commands.get(args[0]).config.args}`
     ])
     
-    
-     str = "```\n"
-     str += args[0]+" Command Help\n"
-     str += "aliases : "+bot.commands.get(args[0]).config.aliases+"\n"
-     str += "possible argument : "+bot.commands.get(args[0]).config.args+"\n"
-     str += "description : "+bot.commands.get(args[0]).config.desc+"\n"
-     str += "```"
-    
-    // message.channel.send(str)
-     message.channel.send(embed)
   }else{
-
-    str_cmd = "```\n"
-    for (i = 0; i < commands.length; i++){
-      str_cmd += "!"+commands[i]+"\n"
-    }
-    str_cmd += "```"
     
-    message.channel.send('Command list ('+commands.length+') : \n'+str_cmd)
-
+    embed.setAuthor(bot.user.username+' Help Menu', bot.user.displayAvatarURL(), "")
+    embed.setDescription([
+				`Available commands for $bot.user.username}`,
+				`The bot's prefix is: ${config.prefix}`
+			]);
+    for (i = 0; i < commands.length; i++){
+      embed.addField("", commands[i])
+    }
   }
   
+  message.channel.send(embed)
   return message.delete()
 }
 
