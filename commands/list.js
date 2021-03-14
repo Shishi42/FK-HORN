@@ -22,6 +22,6 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "list",
   aliases: ["l"],
-  desc: "prints the list of sounds in a message",
-  args: [""]
+  args: [""],
+  desc: "prints the list of sounds in a message"
 }
