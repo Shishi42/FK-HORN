@@ -10,5 +10,6 @@ module.exports.config = {
   name: "google",
   aliases: ["google","gg","search"],
   args: ["<search>"],
-  desc: "returns google search in a message"
+  usage: "google <search>",
+  desc: "Send google link with your search"
 }
