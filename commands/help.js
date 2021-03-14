@@ -9,6 +9,16 @@ module.exports.run = async (bot, message, args) => {
   commands = Array.from(bot.commands.keys())
   
   if(commands.includes(args[0])){
+    
+    const embed = new Discord.MessageEmbed()
+      .setColor('#553380')
+      .setAuthor(bot.user.name'+ Help Menu', '', bot.user.displayAvatarURL())
+      .setFooter(`Requested by ${message.author.username}`, 'https://i.imgur.com/wSTFkRM.png')
+      .setTimestamp();
+    
+    
+    
+    
      str = "```\n"
      str += args[0]+" Command Help\n"
      str += "aliases : "+bot.commands.get(args[0]).config.aliases+"\n"
@@ -16,7 +26,8 @@ module.exports.run = async (bot, message, args) => {
      str += "description : "+bot.commands.get(args[0]).config.desc+"\n"
      str += "```"
     
-     message.channel.send(str)  
+     message.channel.send(str)
+     message.channel.send(embed)
   }else{
 
     str_cmd = "```\n"
