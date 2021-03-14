@@ -66,4 +66,3 @@ module.exports.config = {
   desc: "connects to your voice channel and plays the selected sound",
   args: [""]
 }
-}
