@@ -15,6 +15,7 @@ module.exports.run = async (bot, message, args) => {
      str += "possible argument : "+bot.commands.get(bot.args.get(args[0]))+"\n"
      str += "description : "+bot.commands.get(bot.desc.get(args[0]))+"\n"
      str += "```"
+     console.log(bot.commands)
      console.log(bot.commands.get(bot.aliases))
      message.channel.send(str)  
   }else{
