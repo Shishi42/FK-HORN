@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   if(args[0] == "logs") fs.unlink("logs.txt", function(err))
   if(args[0] == "stats") fs.unlink("stats.json", function(err))
   
-  message.channel.send(args[0]+" reset.")
+  if(args[0] == "logs" || args[0] == "stats") message.channel.send(args[0]+" reset.")
 }
 
 module.exports.config = {
