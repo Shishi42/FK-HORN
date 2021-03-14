@@ -8,8 +8,8 @@ module.exports.run = async (bot, message, args) => {
   const embed = new Discord.MessageEmbed()
       .setColor('#553380')
       .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
-      .setTimestamp();
-      .setAuthor(bot.user.username+' new sounds', bot.user.displayAvatarURL(), "")
+      .setTimestamp()
+      .setAuthor(bot.user.username+' new sounds', bot.user.displayAvatarURL(), "");
   
       for (i = 0; i < new_sounds.list.length; i++){
         else embed.addField(config.prefix+new_sounds.list[i], '\u200b')	  
