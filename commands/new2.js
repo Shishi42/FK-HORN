@@ -15,7 +15,6 @@ module.exports.run = async (bot, message, args) => {
         embed.addField(config.prefix+new_sounds.list[i], '\u200b')	  
       }
       embed.addField("Info", "(*) = collection, (new) = nouveau sons dans une collection")	
-  }
   
   message.channel.send(embed)
   return message.delete()
