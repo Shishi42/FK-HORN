@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "say",
   aliases: ["echo","tell","print"],
-  args: [""],
+  args: [],
   usage: ["say <message>"],
   desc: "Resend the specified message and delete the original."
 }
