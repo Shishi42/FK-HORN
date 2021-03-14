@@ -64,6 +64,6 @@ module.exports.config = {
   name: "airhorn",
   aliases: [],
   args: [""],
-  usage: "!<sound>",
+  usage: "<prefix><sound>",
   desc: "Play in your voice channel the selected sound."
 }
