@@ -23,5 +23,6 @@ module.exports.config = {
   name: "list",
   aliases: ["l"],
   args: [""],
-  desc: "prints the list of sounds in a message"
+  usage : ["list"],
+  desc: "Display sound list."
 }
