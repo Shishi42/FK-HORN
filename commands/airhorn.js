@@ -52,11 +52,16 @@ module.exports.run = async (bot, message, args) => {
     if(stats[collection_name] == undefined) stats[collection_name] = 1
     else stats[collection_name] += 1
     
-    console.log(stats);
+    temp = []
+    for(var i in stats) temp.push([i, stats[i])
     
-    stats.sort(function(a, b) {
+    console.log(temp);
+    
+    temp.sort(function(a, b) {
       return stats[a] > stats[b];
     });
+    
+    console.log(temp);
     
     fs.writeFile("stats.json", JSON.stringify(stats, null, 4), function(err) {})
   }
