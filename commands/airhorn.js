@@ -1,7 +1,8 @@
 const Discord = require("discord.js")
-const config = require("../config.json");
-const path = require('path');
-const fs = require("fs");
+const config = require("../config.json")
+
+const path = require('path')
+const fs = require("fs")
 const jsonfile = require ("jsonfile")
 
 const months = [
@@ -21,11 +22,11 @@ const months = [
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel');
+  if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel')
 
   collection_name = args
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
-  song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)];
+  song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
 
   logs(collection_name, sound_collection, song, message)
 
@@ -61,5 +62,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
   name: "airhorn",
-  aliases: []
+  aliases: [],
+  desc: "connects to your voice channel and plays the selected sound",
+  args: [""]
+}
 }
