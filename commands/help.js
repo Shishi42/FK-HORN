@@ -12,9 +12,9 @@ module.exports.run = async (bot, message, args) => {
     if(commands.includes(args[0])){
        str = "```\n"
        str += "command : "+args[0]
-       str += "aliases : "+bot.commands.get(bot.aliases.get(args[0]))
-       str += "description : "+bot.commands.get(bot.desc.get(args[0]))
-       str += "possible argument : "+bot.commands.get(bot.args.get(args[0]))
+       str += "aliases : "+bot.commands.get(bot.aliases.get(args[0]))+"\n"
+       str += "description : "+bot.commands.get(bot.desc.get(args[0]))+"\n"
+       str += "possible argument : "+bot.commands.get(bot.args.get(args[0]))+"\n"
        str += "```"
        message.channel.send(str)
     }
