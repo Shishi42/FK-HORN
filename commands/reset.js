@@ -30,6 +30,6 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "reset",
   aliases: ["rst","rs"],
-  desc: "Reset the arg (only for bot owner)",
-  args: ["logs","stats","all"]
+  args: ["logs","stats","all"],
+  desc: "Reset the arg (only for bot owner)"
 }
