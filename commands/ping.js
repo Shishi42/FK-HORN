@@ -12,6 +12,6 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "ping",
   aliases: ["pg","p"],
-  args: [""],
+  args: [],
   desc: "returns the bot ping in a message"
 }
