@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "list",
   aliases: ["l"],
-  args: [""],
+  args: [],
   usage : ["list"],
   desc: "Display sound list."
 }
