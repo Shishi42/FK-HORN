@@ -31,6 +31,7 @@ module.exports.run = async (bot, message, args) => {
     for (i = 0; i < commands.length; i++){
       embed.addField(config.prefix+commands[i], bot.commands.get(commands[i]).config.desc)
     }
+    embed.addField("Use "+config.prefix+"help <command> for more info.", '\u200b')	  
   }
   
   message.channel.send(embed)
