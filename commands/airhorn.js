@@ -58,10 +58,10 @@ module.exports.run = async (bot, message, args) => {
     console.log(temp);
     
     temp.sort(function(a, b) {
-      return temp[a] > temp[a];
+      return temp[a][1] > temp[b][1];
     });
     
-    console.log(temp[0][1]);
+    console.log(temp);
     
     fs.writeFile("stats.json", JSON.stringify(stats, null, 4), function(err) {})
      //fs.writeFile("test.json", JSON.stringify(temp, null, 4), function(err) {})   
