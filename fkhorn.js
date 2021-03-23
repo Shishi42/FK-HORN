@@ -43,12 +43,13 @@ bot.on("message", async message => {
   let prefix = config.prefix
   let messageArray = message.content.split(" ")
   let cmd = messageArray[0]
-  let cmd_name = cmd.slice(prefix.length)
   let args = messageArray.slice(1)
 
-  if(bot.sound_collections.includes(cmd_name) && args.length == 0){
+  if(bot.sound_collections.includes(cmd.slice(prefix.length))){
+    let airhorn_number = -1
+    if(Number.isInteger(args[0])) airhorn_number = args[0]
     let commandFile = bot.commands.get("airhorn")
-    if(commandFile) commandFile.run(bot, message, cmd_name)
+    if(commandFile) commandFile.run(bot, message, cmd.slice(prefix.length)+" "+airhorn_number)
   }
   else{
     let commandFile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
