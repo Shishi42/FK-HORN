@@ -25,9 +25,12 @@ module.exports.run = async (bot, message, args) => {
   if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel')
   
   temp = args.split(" ")
+    console.log(args)
+  console.log(temp)
 
   collection_name = temp[0]
   sound_number = temp[1]
+    console.log(sound_number)
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
   
   if((sound_number != -1) && (sound_number >= 0) && (sound_number <= sound_collection.length)) song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
