@@ -23,10 +23,15 @@ const months = [
 module.exports.run = async (bot, message, args) => {
 
   if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel')
+  
+  temp = args.split(" ")
 
-  collection_name = args
+  collection_name = temp[0]
+  sound_number = temp[1]
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
-  song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
+  
+  if((sound_number != -1) && (sound_number >= 0) && (sound_number <= sound_collection.length)) song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
+  else song = "./audio/"+collection_name+"/"+sound_collection[sound_number]
 
   logs(collection_name, sound_collection, song, message)
 
@@ -64,7 +69,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "airhorn",
   aliases: [],
-  args: [],
-  usage: ["<sound>"],
-  desc: "Play in your voice channel the selected sound."
+  args: ["number"],
+  usage: ["<sound> <number>"],
+  desc: "Play in your voice channel the selected sound, if no number provided, sound is random."
 }
