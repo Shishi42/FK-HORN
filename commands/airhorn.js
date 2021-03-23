@@ -26,8 +26,6 @@ module.exports.run = async (bot, message, args) => {
   
   temp = args.split(" ")
   
-       console.log(args)
-  
   collection_name = temp[0]
   sound_number = parseInt(temp[1])-1
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
