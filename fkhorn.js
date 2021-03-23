@@ -47,7 +47,9 @@ bot.on("message", async message => {
 
   if(bot.sound_collections.includes(cmd.slice(prefix.length))){
     let airhorn_number = -1
+    console.log(args[0]))
     if(Number.isInteger(args[0])) airhorn_number = args[0]
+        console.log(airhorn_number)
     let commandFile = bot.commands.get("airhorn")
     if(commandFile) commandFile.run(bot, message, cmd.slice(prefix.length)+" "+airhorn_number)
   }
