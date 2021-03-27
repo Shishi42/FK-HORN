@@ -21,7 +21,9 @@ const months = [
 ]
 
 module.exports.run = async (bot, message, args) => {
- 
+
+  if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel')
+  
   temp = args.split(" ")
   
   collection_name = temp[0]
@@ -32,8 +34,6 @@ module.exports.run = async (bot, message, args) => {
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
   
   if(sound_arg != "help"){
-    
-    if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel')
   
     if((sound_arg >= 0) && (sound_arg < sound_collection.length)) song = "./audio/"+collection_name+"/"+sound_collection[sound_arg]
     else song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
@@ -50,17 +50,17 @@ module.exports.run = async (bot, message, args) => {
   }else{
     str = "```\n"
     for (i = 0; i < sound_collection.length; i++){
-      str += ""+((i+1).toString())+". "+sound_collection[i]+"\n"
+      str += (i+1).toString+". "+sound_collection[i]+"\n"
     }
-    str += "```"
-    message.channel.send(collection_name +' sound list ('+sound_collection.length+') : \n'+str)
+    str_snd += "```"
+    message.channel.send(collection_name +' sound list ('+sound_collection.length+') : \n'+str_snd)
   }  
 
   function logs(collection_name, sound_collection, song, message){
     stats(collection_name)
     temp_date = message.createdAt
     date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
-    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+message.channel.guild.name+"/"+message.channel.name+" | by "+message.author.tag+"."
+    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+message.channel.guild.name+"/"+message.channel.name+" | by "+message.author.tag+"."
 
     fs.appendFileSync('logs.txt', logs+"\n", function (err){});
 
@@ -83,7 +83,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "airhorn",
   aliases: [],
-  args: ["number", "help"],
-  usage: ["<sound> <number>/help"],
+  args: ["number"],
+  usage: ["<sound> <number>"],
   desc: "Play in your voice channel the selected sound, if no number provided, sound is random."
 }
