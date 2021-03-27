@@ -50,7 +50,7 @@ module.exports.run = async (bot, message, args) => {
   }else{
     str = "```\n"
     for (i = 0; i < sound_collection.length; i++){
-      str += (i+1).toString+". "+sound_collection[i]+"\n"
+      str += ""+((i+1).toString())+". "+sound_collection[i]+"\n"
     }
     str += "```"
     message.channel.send(collection_name +' sound list ('+sound_collection.length+') : \n'+str)
