@@ -46,10 +46,10 @@ bot.on("message", async message => {
   let args = messageArray.slice(1)
 
   if(bot.sound_collections.includes(cmd.slice(prefix.length))){
-    let airhorn_number = -1
-    if(Number.isInteger(parseInt(args[0]))) airhorn_number = args[0]
+    let airhorn_arg
+    if(args[0] != undefined) airhorn_arg = args[0]
     let commandFile = bot.commands.get("airhorn")
-    if(commandFile) commandFile.run(bot, message, cmd.slice(prefix.length)+" "+airhorn_number)
+    if(commandFile) commandFile.run(bot, message, cmd.slice(prefix.length)+" "+airhorn_arg)
   }
   else{
     let commandFile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
