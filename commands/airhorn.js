@@ -21,9 +21,7 @@ const months = [
 ]
 
 module.exports.run = async (bot, message, args) => {
-
-  if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel')
-  
+ 
   temp = args.split(" ")
   
   collection_name = temp[0]
@@ -34,6 +32,8 @@ module.exports.run = async (bot, message, args) => {
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
   
   if(sound_arg != "help"){
+    
+    if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel')
   
     if((sound_arg >= 0) && (sound_arg < sound_collection.length)) song = "./audio/"+collection_name+"/"+sound_collection[sound_arg]
     else song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
