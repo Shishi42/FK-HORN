@@ -25,12 +25,11 @@ module.exports.run = async (bot, message, args) => {
   }else if(bot.sound_collections.includes(args[0])){
     collection_name = args[0]
     sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
-    embed.setAuthor((args[0]+" Sound List", bot.user.displayAvatarURL(), "")
+    embed.setAuthor(args[0]+" Sound List", bot.user.displayAvatarURL(), "")
     for (i = 0; i < sound_collection.length; i++){
       embed.addField(""+((i+1).toString())+". ", sound_collection[i])
     }
   }else{
-    
     embed.setAuthor(bot.user.username+' Help Menu', bot.user.displayAvatarURL(), "")
     embed.setDescription([
 	`Available commands for ${bot.user.username}`,
