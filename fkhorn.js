@@ -38,7 +38,7 @@ bot.on("ready", async () => {
 })
 
 bot.on("message", async message => {
-  if (message.author.bot || message.channel.type === "dm" || !message.content.startsWith(config.prefix)) return
+  if (message.author.bot || message.channel.type === "dm" || !message.content.startsWith(config.prefix)) return
 
   let prefix = config.prefix
   let messageArray = message.content.split(" ")
