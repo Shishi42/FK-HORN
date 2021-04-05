@@ -10,6 +10,12 @@ bot.aliases = new Discord.Collection()
 
 bot.sound_collections = []
 
+if(fs.existsSync("./commands/safe.json")){
+  bot.not_safe_list = jsonfile.readFileSync("./commands/safe_list.json").list
+}
+
+bot.safe_mode = false
+
 fs.readdir("./commands/", (err, files) => {
 
   if(err) console.log(err)
@@ -19,7 +25,7 @@ fs.readdir("./commands/", (err, files) => {
   if(jsfile.length <= 0){
     return console.log("[LOGS] commands not found!")
   }
-  
+
   //console.log("[LOGS] commands found :")
   jsfile.forEach((f, i) => {
     //console.log(f)

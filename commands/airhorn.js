@@ -23,18 +23,20 @@ const months = [
 module.exports.run = async (bot, message, args) => {
 
   if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel')
-  
+
   temp = args.split(" ")
-  
+
   collection_name = temp[0]
-  
+
+  if(bot.safe_mode == true && bot.not_safe_list.includes(collection_name) && message.author != bot_owner) return message.channel.send("Safe mode ON, you can't use this song")
+
   if(Number.isInteger(parseInt(temp[1]))) sound_arg = parseInt(temp[1])-1
   else sound_arg = temp[1]
-  
+
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
-  
+
   if(Number.isInteger(sound_arg)){
-  
+
     if((sound_arg >= 0) && (sound_arg < sound_collection.length)) song = "./audio/"+collection_name+"/"+sound_collection[sound_arg]
     else song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
 
@@ -46,7 +48,7 @@ module.exports.run = async (bot, message, args) => {
       const dispatcher = connection.play(path.join(__dirname, song))
       dispatcher.on("finish", () => voice_channel.leave());
     })
-    
+
   }
 
   function logs(collection_name, sound_collection, song, message){
