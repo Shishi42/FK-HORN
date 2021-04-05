@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const config = require("../config.json")
 
 module.exports.run = async (bot, message, args) => {
-  if(message.member != config.bot_owner) return message.reply("You must be admin or bot owner")
+  if(message.member != config.bot_owner) return message.reply("You must be bot owner")
 
   if(bot.safe_mode == true){
     bot.safe_mode = false
