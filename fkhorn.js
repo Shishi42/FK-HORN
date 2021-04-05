@@ -10,7 +10,7 @@ bot.aliases = new Discord.Collection()
 
 bot.sound_collections = []
 
-if(fs.existsSync("./commands/safe.json")){
+if(fs.existsSync("./commands/safe_list.json")){
   bot.not_safe = jsonfile.readFileSync("./commands/safe_list.json")
 }
 
