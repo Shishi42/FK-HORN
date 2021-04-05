@@ -6,10 +6,10 @@ module.exports.run = async (bot, message, args) => {
 
   if(bot.safe_mode == true){
     bot.safe_mode = false
-    return message.channel.send("Safe mode set to FALSE")
+    return message.channel.send("Safe mode set to OFF")
   }else{
     bot.safe_mode = true
-    return message.channel.send("Safe mode set to TRUE")
+    return message.channel.send("Safe mode set to ON")
   }
 }
 
