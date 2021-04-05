@@ -14,7 +14,8 @@ module.exports.run = async (bot, message, args) => {
       else str_snd += "!"+bot.sound_collections[i]+"\n"
     }
   }
-  str_snd += "These commands can be used everytime"
+  str_snd += "------------------------------------\n"
+  str_snd += "These commands can be used everytime\n"
   str_snd += "```"
   message.channel.send('Airhorn safe sound list ('+bot.sound_collections.length+') : \n'+str_snd)
 

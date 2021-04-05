@@ -14,7 +14,8 @@ module.exports.run = async (bot, message, args) => {
       else str_snd += "!"+bot.sound_collections[i]+"\n"
     }
   }
-  str_snd += "These commands can't be used when safe mode is ON"
+  str_snd += "------------------------------------\n"
+  str_snd += "These commands can't be used while safe mode is ON\n"
   str_snd += "```"
   message.channel.send('Airhorn not safe sound list ('+bot.sound_collections.length+') : \n'+str_snd)
 

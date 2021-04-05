@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
 
   collection_name = temp[0]
 
-  if(bot.safe_mode == true && bot.not_safe.list.includes(collection_name) && message.author != bot_owner) return message.channel.send("Safe mode ON, you can't use this song")
+  if(bot.safe_mode == true && bot.not_safe.list.includes(collection_name) && message.author != config.bot_owner) return message.channel.send("Safe mode ON, you can't use this song")
 
   if(Number.isInteger(parseInt(temp[1]))) sound_arg = parseInt(temp[1])-1
   else sound_arg = temp[1]
