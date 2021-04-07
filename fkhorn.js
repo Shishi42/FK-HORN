@@ -72,7 +72,7 @@ bot.on("message", async message => {
 
 twitch_client.on('message', (channel, tags, message, self) => {
   if(self || !message.startsWith(config.prefix) || live_mode == false) return
-  if(!tags.mod) return
+  if(!tags.mod && (channel != tags.username)) return
 
 	const args = message.slice(1).split(' ');
 	const command = args.shift().toLowerCase();
