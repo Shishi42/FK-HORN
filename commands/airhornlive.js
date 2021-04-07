@@ -22,40 +22,30 @@ const months = [
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel')
+  if(message != "twitch") return
 
-  temp = args.split(" ")
-
-  collection_name = temp[0]
-
-  if(bot.live_mode == true && bot.not_safe.list.includes(collection_name) && message.author != config.bot_owner) return message.channel.send("Live mode ON, you can't use this song")
-
-  if(Number.isInteger(parseInt(temp[1]))) sound_arg = parseInt(temp[1])-1
-  else sound_arg = temp[1]
+  collection_name = args
+  if(bot.not_safe.list.includes(collection_name)) return
 
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
+  song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
 
-  if(Number.isInteger(sound_arg)){
+  logs(collection_name, sound_collection, song)
 
-    if((sound_arg >= 0) && (sound_arg < sound_collection.length)) song = "./audio/"+collection_name+"/"+sound_collection[sound_arg]
-    else song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
+  voice_channel = bot.channels.cache.get(config.live_channel)
 
-    logs(collection_name, sound_collection, song, message)
-
-    voice_channel = message.member.voice.channel
-
+  if(voice_channel != undefined){
     voice_channel.join().then((connection) => {
       const dispatcher = connection.play(path.join(__dirname, song))
       dispatcher.on("finish", () => voice_channel.leave());
     })
-
   }
 
   function logs(collection_name, sound_collection, song, message){
     stats(collection_name)
-    temp_date = message.createdAt
+    temp_date = new Date()
     date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
-    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+message.channel.guild.name+"/"+message.channel.name+" | by "+message.author.tag+"."
+    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on TWITCH."
 
     fs.appendFileSync('logs.txt', logs+"\n", function (err){});
 
@@ -76,9 +66,9 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.config = {
-  name: "airhorn",
+  name: "airhornlive",
   aliases: [],
-  args: ["number"],
-  usage: ["<sound> <number>"],
-  desc: "Play in your voice channel the selected sound, if no number provided, sound is random."
+  args: [],
+  usage: ["Can't be use on Discord"],
+  desc: "Play in the twitch live channel the selected sound, sound is random."
 }

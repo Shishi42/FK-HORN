@@ -4,21 +4,21 @@ const config = require("../config.json")
 module.exports.run = async (bot, message, args) => {
   if(message.member != config.bot_owner) return message.reply("You must be bot owner")
 
-  if(bot.safe_mode == true){
-    bot.safe_mode = false
-    message.channel.send("Safe mode set to OFF")
+  if(bot.live_mode == true){
+    bot.live_mode = false
+    message.channel.send("Live mode set to OFF")
   }else{
-    bot.safe_mode = true
-    message.channel.send("Safe mode set to ON")
+    bot.live_mode = true
+    message.channel.send("Live mode set to ON")
   }
 
   return message.delete()
 }
 
 module.exports.config = {
-  name: "safemode",
-  aliases: ["sfm"],
+  name: "livemode",
+  aliases: ["lmd"],
   args: [],
-  usage : ["safemode"],
-  desc: "Set safe mode."
+  usage : ["livemode"],
+  desc: "Set live mode."
 }

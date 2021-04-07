@@ -2,20 +2,18 @@ const Discord = require("discord.js")
 const config = require("./config.json")
 const bot = new Discord.Client()
 
+const tmi = require('tmi.js');
+
+const twitch_client = new tmi.Client({
+	connection: { reconnect: true },
+	channels: [ config.twitch_channel ]
+});
+
 const jsonfile = require ("jsonfile")
 const fs = require("fs")
 
 bot.commands = new Discord.Collection()
 bot.aliases = new Discord.Collection()
-
-bot.sound_collections = []
-
-if(fs.existsSync("./commands/safe_list.json")){
-  bot.not_safe = jsonfile.readFileSync("./commands/safe_list.json")
-}
-
-bot.safe_mode = false
-
 fs.readdir("./commands/", (err, files) => {
 
   if(err) console.log(err)
@@ -39,6 +37,15 @@ fs.readdir("./commands/", (err, files) => {
 
 bot.on("ready", async () => {
   console.log(`Connecté en tant que ${bot.user.tag}!`)
+  if(fs.existsSync("./commands/safe_list.json")){
+    bot.not_safe = jsonfile.readFileSync("./commands/safe_list.json")
+  }
+
+  twitch_client.connect();
+
+  bot.live_mode = false
+  bot.sound_collections = []
+
   try {updateCollections()}
   catch(error) {console.error(error)}
 })
@@ -62,6 +69,19 @@ bot.on("message", async message => {
     if(commandFile) commandFile.run(bot, message, args)
   }
 })
+
+twitch_client.on('message', (channel, tags, message, self) => {
+  if(self || !message.startsWith(config.prefix) || live_mode == false) return
+  if(!tags.mod) return
+
+	const args = message.slice(1).split(' ');
+	const command = args.shift().toLowerCase();
+
+  if(bot.sound_collections.includes(command)){
+    let commandFile = bot.commands.get("airhornlive")
+    if(commandFile) commandFile.run(bot, "twitch", command)
+  }
+});
 
 function updateCollections(){
   bot.sound_collections = fs.readdirSync("./commands/audio/")
