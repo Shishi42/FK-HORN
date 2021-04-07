@@ -71,8 +71,9 @@ bot.on("message", async message => {
 })
 
 twitch_client.on('message', (channel, tags, message, self) => {
-  if(self || !message.startsWith(config.prefix) || bot.live_mode == false) return
-  if(!tags.mod && (channel != "#"+tags.username) && (tags.username != config.twitch_owner)) return
+  if(self || !message.startsWith(config.prefix)) return
+	if(bot.live_mode == false) return
+  if((tags.mod == false) && (channel != "#"+tags.username) && (tags.username != config.twitch_owner) && (tags.badges.vip == undefined)) return
 
 	const args = message.slice(1).split(' ');
 	const command = args.shift().toLowerCase();
