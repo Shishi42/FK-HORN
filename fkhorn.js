@@ -45,6 +45,7 @@ bot.on("ready", async () => {
 
   bot.live_mode = false
   bot.sound_collections = []
+	bot.last_horn = new Date()
 
   try {updateCollections()}
   catch(error) {console.error(error)}
@@ -74,6 +75,9 @@ twitch_client.on('message', (channel, tags, message, self) => {
   if(self || !message.startsWith(config.prefix)) return
 	if(bot.live_mode == false) return
   if((tags.mod == false) && (channel != "#"+tags.username) && (tags.username != config.twitch_owner) && (tags.badges.vip == undefined)) return
+	if(bot.last_horn.getTime()+5000 > new Date().getTime()) return
+
+	bot.last_horn = new Date()
 
 	const args = message.slice(1).split(' ');
 	const command = args.shift().toLowerCase();
