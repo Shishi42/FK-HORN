@@ -46,6 +46,7 @@ bot.on("ready", async () => {
   bot.live_mode = false
   bot.sound_collections = []
 	bot.last_horn = new Date()
+	bot.stream_channel = config.stream_channel
 
   try {updateCollections()}
   catch(error) {console.error(error)}

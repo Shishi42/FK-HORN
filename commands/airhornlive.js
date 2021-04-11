@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
 
   logs(collection_name, sound_collection, song)
 
-  voice_channel = bot.channels.cache.get(config.live_channel)
+  voice_channel = bot.channels.cache.get(bot.stream_channel)
 
   if(voice_channel != undefined){
     voice_channel.join().then((connection) => {
