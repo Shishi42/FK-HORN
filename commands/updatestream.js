@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
 
   bot.stream_channel = args[0]
   voice_channel = bot.channels.cache.get(bot.stream_channel)
-  message.channel.send("Stream Channel set to "+bot.stream_channel+"/"+voice_channel.name)
+  message.channel.send("Stream Channel set to "+bot.stream_channel+" | "+voice_channel.guild.name+"/"+voice_channel.name)
 
   return message.delete()
 }
