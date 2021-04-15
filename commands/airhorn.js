@@ -47,6 +47,9 @@ module.exports.run = async (bot, message, args) => {
     voice_channel.join().then((connection) => {
       const dispatcher = connection.play(path.join(__dirname, song))
       dispatcher.on("finish", () => voice_channel.leave());
+    }).catch((error) =>{
+      console.log(error)
+      voice_channel.leave()
     })
 
   }

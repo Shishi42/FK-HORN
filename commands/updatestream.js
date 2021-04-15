@@ -16,5 +16,5 @@ module.exports.config = {
   aliases: ["upsch"],
   args: ["<id>"],
   usage : ["updatestream <id>"],
-  desc: "Update stream channel with id"
+  desc: "Update stream channel with id (only for bot owner)."
 }

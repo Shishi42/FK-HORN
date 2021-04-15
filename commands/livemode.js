@@ -20,5 +20,5 @@ module.exports.config = {
   aliases: ["lmd"],
   args: [],
   usage : ["livemode"],
-  desc: "Set live mode."
+  desc: "Set live mode (only for bot owner)."
 }
