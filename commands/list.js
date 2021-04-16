@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
     str_snd += "------------------------------------\n"
     str_snd += "These commands can be used everytime\n"
     str_snd += "```"
-    message.channel.send('Airhorn safe sound list ('+bot.sound_collections.length+') : \n'+str_snd)
+    message.channel.send('Airhorn safe sound list ('+(bot.sound_collections.length-bot.not_safe.length)+') : \n'+str_snd)
 
     return message.delete()
   }
@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
     str_snd += "------------------------------------\n"
     str_snd += "These commands can't be used while safe mode is ON\n"
     str_snd += "```"
-    message.channel.send('Airhorn not safe sound list ('+bot.sound_collections.length+') : \n'+str_snd)
+    message.channel.send('Airhorn not safe sound list ('+bot.not_safe.length+') : \n'+str_snd)
 
     return message.delete()
   }
