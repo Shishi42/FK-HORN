@@ -37,8 +37,8 @@ fs.readdir("./commands/", (err, files) => {
 
 bot.on("ready", async () => {
   console.log(`Connecté en tant que ${bot.user.tag}!`)
-  if(fs.existsSync("./commands/safe_list.json")){
-    bot.not_safe = jsonfile.readFileSync("./commands/safe_list.json")
+  if(fs.existsSync("./safe_list.json")){
+    bot.not_safe = jsonfile.readFileSync("./safe_list.json")
   }
 
   twitch_client.connect();

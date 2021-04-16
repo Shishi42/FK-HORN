@@ -6,10 +6,10 @@ module.exports.run = async (bot, message, args) => {
 
   if(bot.live_mode == true){
     bot.live_mode = false
-    message.channel.send("```Live mode set to OFF```")
+    message.channel.send("```Live-mode set to OFF```")
   }else{
     bot.live_mode = true
-    message.channel.send("```Live mode set to ON```")
+    message.channel.send("```Live-mode set to ON```")
   }
 
   return message.delete()
@@ -20,5 +20,5 @@ module.exports.config = {
   aliases: ["lmd"],
   args: [],
   usage : ["livemode"],
-  desc: "Set live mode (only for bot owner)."
+  desc: "Set live-mode (only for bot owner)."
 }

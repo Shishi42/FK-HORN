@@ -56,6 +56,6 @@ module.exports.config = {
   name: "list",
   aliases: ["l"],
   args: ["safe","notsafe"],
-  usage : ["list <args>"],
+  usage : ["list","list <argument>"],
   desc: "Display sound list."
 }
