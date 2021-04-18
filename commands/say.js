@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
   if(args.length != 0){
     message.channel.send(args.join(' '))
   }
-  message.delete()
+  return message.delete()
 }
 
 module.exports.config = {

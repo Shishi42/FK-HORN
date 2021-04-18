@@ -3,7 +3,7 @@ const config = require("../config.json")
 
 module.exports.run = async (bot, message, args) => {
   message.guild.me.voice.kick("Disconnect Command")
-  message.delete()
+  return message.delete()
 }
 
 module.exports.config = {

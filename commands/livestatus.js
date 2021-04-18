@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   str += "Stream Channel set to "+bot.stream_channel+" | "+voice_channel.guild.name+"/"+voice_channel.name+"\n"
   str += "```"
   message.channel.send(str)
-  message.delete()
+  return message.delete()
 }
 
 module.exports.config = {
