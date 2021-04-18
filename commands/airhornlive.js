@@ -22,7 +22,7 @@ const months = [
 
 module.exports.run = async (bot, message, args) => {
 
-  if(message != "twitch") return
+  if(!message.startsWith("twitch")) return
 
   collection_name = args
   if(bot.not_safe.list.includes(collection_name)) return
@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
   sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
   song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
 
-  logs(collection_name, sound_collection, song)
+  logs(collection_name, sound_collection, song, message.split(":")[1])
 
   voice_channel = bot.channels.cache.get(bot.stream_channel)
 
@@ -38,14 +38,17 @@ module.exports.run = async (bot, message, args) => {
     voice_channel.join().then((connection) => {
       const dispatcher = connection.play(path.join(__dirname, song))
       dispatcher.on("finish", () => voice_channel.leave());
+    }).catch((error) =>{
+      console.error(error)
+      voice_channel.leave()
     })
   }
 
-  function logs(collection_name, sound_collection, song, message){
+  function logs(collection_name, sound_collection, song, message, author){
     stats(collection_name)
     temp_date = new Date()
     date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
-    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on TWITCH."
+    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | by "+author+" on TWITCH."
 
     fs.appendFileSync('logs.txt', logs+"\n", function (err){});
 

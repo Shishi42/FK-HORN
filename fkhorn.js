@@ -75,7 +75,7 @@ bot.on("message", async message => {
 twitch_client.on('message', (channel, tags, message, self) => {
   if(self || !message.startsWith(config.prefix)) return
 	if(bot.live_mode == false) return
-  if((tags.mod == false) && (channel != "#"+tags.username) && (tags.username != config.twitch_owner) && (tags.badges.vip == undefined)) return
+  if((tags.mod == false) && (channel != "#"+tags.username) && (tags.username != config.twitch_owner) && (tags.badges == null || tags.badges.vip == undefined)) return
 	if(bot.last_horn.getTime()+5000 > new Date().getTime()) return
 
 	bot.last_horn = new Date()
@@ -85,7 +85,7 @@ twitch_client.on('message', (channel, tags, message, self) => {
 
   if(bot.sound_collections.includes(command)){
     let commandFile = bot.commands.get("airhornlive")
-    if(commandFile) commandFile.run(bot, "twitch", command)
+    if(commandFile) commandFile.run(bot, "twitch:"+tags.username, command)
   }
 });
 
