@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
   name: "disconnect",
-  aliases: ["dis","disco"],
+  aliases: ["dis","disco","stop"],
   args: [],
   usage: ["disconnect"],
   desc: "Disconnect the bot from the voice channel."
