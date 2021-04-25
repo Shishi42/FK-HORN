@@ -43,7 +43,7 @@ bot.on("ready", async () => {
 
   twitch_client.connect();
 	
-  bot.user.setPresence({status : 'online', activity: { name: '!list for list of sounds', type: 'STREAMING', url: 'https://imgur.com/a/vcd3iW6' }});
+  bot.user.setPresence({status : 'online', activity: { name: '!list for list of sounds', type: 'WATCHING', url: 'https://imgur.com/a/vcd3iW6' }});
 
   bot.live_mode = false
   bot.sound_collections = []
