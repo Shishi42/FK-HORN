@@ -42,6 +42,8 @@ bot.on("ready", async () => {
   }
 
   twitch_client.connect();
+	
+  bot.user.setPresence({status : 'online', activity: { name: '!list for list of sounds', type: 'COMPETING' }});
 
   bot.live_mode = false
   bot.sound_collections = []
