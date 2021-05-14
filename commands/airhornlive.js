@@ -32,6 +32,8 @@ module.exports.run = async (bot, message, args) => {
 
   logs(collection_name, sound_collection, song, message.split(":")[1])
 
+  console.log(message)
+
   voice_channel = bot.channels.cache.get(bot.stream_channel)
 
   if(voice_channel != undefined){
