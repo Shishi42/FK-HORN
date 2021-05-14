@@ -33,12 +33,12 @@ module.exports.run = async (bot, message, args) => {
   if(Number.isInteger(parseInt(temp[1]))) sound_arg = parseInt(temp[1])-1
   else sound_arg = temp[1]
 
-  sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
+  sound_collection = fs.readdirSync(path.join(__dirname, "../audio/"+collection_name))
 
   if(Number.isInteger(sound_arg)){
 
-    if((sound_arg >= 0) && (sound_arg < sound_collection.length)) song = "./audio/"+collection_name+"/"+sound_collection[sound_arg]
-    else song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
+    if((sound_arg >= 0) && (sound_arg < sound_collection.length)) song = "../audio/"+collection_name+"/"+sound_collection[sound_arg]
+    else song = "../audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
 
     logs(collection_name, sound_collection, song, message)
 

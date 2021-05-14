@@ -27,8 +27,8 @@ module.exports.run = async (bot, message, args) => {
   collection_name = args
   if(bot.not_safe.list.includes(collection_name)) return
 
-  sound_collection = fs.readdirSync(path.join(__dirname, "/audio/"+collection_name))
-  song = "./audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
+  sound_collection = fs.readdirSync(path.join(__dirname, "../audio/"+collection_name))
+  song = "../audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
 
   logs(collection_name, sound_collection, song, message.split(":")[1])
 

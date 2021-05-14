@@ -37,12 +37,12 @@ fs.readdir("./commands/", (err, files) => {
 
 bot.on("ready", async () => {
   console.log(`Connecté en tant que ${bot.user.tag}!`)
-  if(fs.existsSync("./safe_list.json")){
-    bot.not_safe = jsonfile.readFileSync("./safe_list.json")
+  if(fs.existsSync("./not_safe.json")){
+    bot.not_safe = jsonfile.readFileSync("./not_safe.json")
   }
 
   twitch_client.connect();
-	
+
   bot.user.setPresence({status : 'online', activity: { name: '!list for list of sounds', type: 'WATCHING', url: 'https://imgur.com/a/vcd3iW6' }});
 
   bot.live_mode = false
@@ -92,7 +92,7 @@ twitch_client.on('message', (channel, tags, message, self) => {
 });
 
 function updateCollections(){
-  bot.sound_collections = fs.readdirSync("./commands/audio/")
+  bot.sound_collections = fs.readdirSync("./audio/")
   //console.log("Getting collections : "+bot.sound_collections)
 }
 
