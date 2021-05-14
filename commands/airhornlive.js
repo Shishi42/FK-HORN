@@ -30,9 +30,9 @@ module.exports.run = async (bot, message, args) => {
   sound_collection = fs.readdirSync(path.join(__dirname, "../audio/"+collection_name))
   song = "../audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
 
-  logs(collection_name, sound_collection, song, message.split(":")[1])
-
   voice_channel = bot.channels.cache.get(bot.stream_channel)
+
+  logs(collection_name, sound_collection, song, message.split(":")[1], voice_channel)
 
   if(voice_channel != undefined){
     voice_channel.join().then((connection) => {
@@ -44,11 +44,11 @@ module.exports.run = async (bot, message, args) => {
     })
   }
 
-  function logs(collection_name, sound_collection, song, author){
+  function logs(collection_name, sound_collection, song, author, channel){
     stats(collection_name)
     temp_date = new Date()
     date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
-    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | by "+author+" on TWITCH."
+    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+channel.guild.name+"/"+channel.name+" by "+author+" on TWITCH."
 
     fs.appendFileSync('logs.txt', logs+"\n", function (err){});
 

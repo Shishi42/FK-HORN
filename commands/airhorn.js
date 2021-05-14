@@ -40,9 +40,9 @@ module.exports.run = async (bot, message, args) => {
     if((sound_arg >= 0) && (sound_arg < sound_collection.length)) song = "../audio/"+collection_name+"/"+sound_collection[sound_arg]
     else song = "../audio/"+collection_name+"/"+sound_collection[Math.floor(Math.random() * sound_collection.length)]
 
-    logs(collection_name, sound_collection, song, message)
-
     voice_channel = message.member.voice.channel
+
+    logs(collection_name, sound_collection, song, message, voice_channel.name)
 
     voice_channel.join().then((connection) => {
       const dispatcher = connection.play(path.join(__dirname, song))
@@ -54,11 +54,11 @@ module.exports.run = async (bot, message, args) => {
 
   }
 
-  function logs(collection_name, sound_collection, song, message){
+  function logs(collection_name, sound_collection, song, message, channel){
     stats(collection_name)
     temp_date = message.createdAt
     date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
-    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+message.channel.guild.name+"/"+message.channel.name+" | by "+message.author.tag+"."
+    logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+message.channel.guild.name+"/"+message.channel.name+" -> "+message.channel.guild.name+"/"+channel+" | by "+message.author.tag+"."
 
     fs.appendFileSync('logs.txt', logs+"\n", function (err){});
 
