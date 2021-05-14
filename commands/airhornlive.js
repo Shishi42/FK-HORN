@@ -32,10 +32,6 @@ module.exports.run = async (bot, message, args) => {
 
   logs(collection_name, sound_collection, song, message.split(":")[1])
 
-  console.log(message)
-  console.log(message.split(":"))
-  console.log(message.split(":")[1])
-
   voice_channel = bot.channels.cache.get(bot.stream_channel)
 
   if(voice_channel != undefined){
@@ -48,7 +44,7 @@ module.exports.run = async (bot, message, args) => {
     })
   }
 
-  function logs(collection_name, sound_collection, song, message, author){
+  function logs(collection_name, sound_collection, song, author){
     stats(collection_name)
     temp_date = new Date()
     date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
