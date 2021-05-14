@@ -33,6 +33,8 @@ module.exports.run = async (bot, message, args) => {
   logs(collection_name, sound_collection, song, message.split(":")[1])
 
   console.log(message)
+  console.log(message.split(":"))
+  console.log(message.split(":")[1])
 
   voice_channel = bot.channels.cache.get(bot.stream_channel)
 

@@ -87,8 +87,6 @@ twitch_client.on('message', (channel, tags, message, self) => {
 
   if(bot.sound_collections.includes(command)){
     let commandFile = bot.commands.get("airhornlive")
-		console.log(tags.username)
-		console.log(tags)
     if(commandFile) commandFile.run(bot, "twitch:"+tags.username, command)
   }
 });
