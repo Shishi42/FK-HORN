@@ -1,6 +1,7 @@
 node_modules
 package-lock.json
-config.json
 logs.txt
 stats.json
 new.json
+listafk.js
+config.json
