@@ -66,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "vicecap",
   aliases: ["vc","vcp"],
-  args: [],
-  usage: ["vicecap"],
-  desc: "Choose a vice-captain."
+  args: ["@removed_member"],
+  usage: ["vicecap <args>"],
+  desc: "Choose a vice-captain from a random non-captain non-removed member of the server."
 }
