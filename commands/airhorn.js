@@ -55,7 +55,6 @@ module.exports.run = async (bot, message, args) => {
   }
 
   function logs(collection_name, sound_collection, song, message, channel){
-    stats(collection_name)
     temp_date = message.createdAt
     date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
     logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+message.channel.guild.name+"/"+message.channel.name+" -> "+message.channel.guild.name+"/"+channel+" | by "+message.author.tag+"."
@@ -65,17 +64,6 @@ module.exports.run = async (bot, message, args) => {
     console.log(logs);
   }
 
-  function stats(collection_name){
-    if(fs.existsSync("stats.json")) stats = jsonfile.readFileSync("stats.json")
-    else{
-      fs.appendFileSync("stats.json", "", function(err) {})
-      stats = {}
-    }
-    if(stats[collection_name] == undefined) stats[collection_name] = 1
-    else stats[collection_name] += 1
-    fs.unlink("stats.json", function(err) {})
-    fs.appendFileSync("stats.json", JSON.stringify(stats, null, 4), function(err) {})
-  }
 }
 
 module.exports.config = {

@@ -6,31 +6,15 @@ const fs = require("fs")
 module.exports.run = async (bot, message, args) => {
 
   if (message.member != config.bot_owner) return message.channel.send('You are not the bot owner!')
-  
-  isSomethingReset = false
-  
-  if(args[0] == "logs"){
-    fs.unlink("logs.txt", function(err) {})
-    isSomethingReset = true
-  }
-  if(args[0] == "stats"){
-    fs.unlink("stats.json", function(err) {})
-    isSomethingReset = true
-  }  
-  if(args[0] == "all"){
-   fs.unlink("logs.txt", function(err) {})
-   fs.unlink("stats.json", function(err) {})
-   isSomethingReset = true
-  }
-  
-  if(isSomethingReset) message.channel.send(args[0]+" successfully reset.")
-  else message.channel.send("Argument error, nothing reset.")
+  fs.unlink("logs.txt", function(err) {})
+
+  return message.channel.send("Logs successfully reset.")
 }
 
 module.exports.config = {
   name: "reset",
   aliases: ["rst","rs"],
-  args: ["logs","stats","all"],
-  usage: ["reset <argument>"],
-  desc: "Reset the specified arg (only for bot owner)."
+  args: [],
+  usage: ["reset"],
+  desc: "Reset logs (only for bot owner)."
 }
