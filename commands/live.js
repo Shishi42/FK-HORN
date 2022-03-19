@@ -20,12 +20,20 @@ module.exports.run = async (bot, message, args) => {
       voice_channel = bot.channels.cache.get(bot.stream_channel)
       message.channel.send("```Stream Channel set to "+bot.stream_channel+" | "+voice_channel.guild.name+"/"+voice_channel.name+"```")
     }
+  }else if(args[0].toUpperCase() == "status"){
+    str = "```"
+    if(bot.live_mode == true) str += "Live-mode is ON\n"
+    else str += "Live-mode is OFF\n"
+    voice_channel = bot.channels.cache.get(bot.stream_channel)
+    str += "Stream Channel set to "+bot.stream_channel+" | "+voice_channel.guild.name+"/"+voice_channel.name+"\n"
+    str += "```"
+    message.channel.send(str)
   }else{
     bot.stream_channel = args[0]
     voice_channel = bot.channels.cache.get(bot.stream_channel)
     message.channel.send("```Stream Channel set to "+bot.stream_channel+" | "+voice_channel.guild.name+"/"+voice_channel.name+"```")
   }
-  
+
   return message.delete()
 }
 

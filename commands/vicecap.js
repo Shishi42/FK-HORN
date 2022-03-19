@@ -21,8 +21,7 @@ const months = [
 module.exports.run = async (bot, message, args) => {
 
   if(!message.member.hasPermission('ADMINISTRATOR')){
-    message.channel.send("T'es pas admin casse toi.")
-    return message.delete()
+    return message.channel.send("T'es pas admin casse toi.")
   }
 
   const embed = new Discord.MessageEmbed()
