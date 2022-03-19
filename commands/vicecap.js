@@ -3,21 +3,6 @@ const config = require("../config.json")
 
 const fs = require("fs")
 
-const months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-]
-
 module.exports.run = async (bot, message, args) => {
 
   if(!message.member.hasPermission('ADMINISTRATOR')){
@@ -66,7 +51,7 @@ module.exports.run = async (bot, message, args) => {
 
   function logs(message, tirs, bans){
     temp_date = message.createdAt
-    date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
+    date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+bot.months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
 
     temp_name = []
     elu.forEach(tir => {

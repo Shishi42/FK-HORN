@@ -3,22 +3,6 @@ const config = require("../config.json")
 
 const path = require('path')
 const fs = require("fs")
-const jsonfile = require ("jsonfile")
-
-const months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-]
 
 module.exports.run = async (bot, message, args) => {
 
@@ -56,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
 
   function logs(collection_name, sound_collection, song, message, channel){
     temp_date = message.createdAt
-    date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
+    date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+bot.months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
     logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+message.channel.guild.name+"/"+message.channel.name+" -> "+message.channel.guild.name+"/"+channel+" | by "+message.author.tag+"."
 
     fs.appendFileSync('logs.txt', logs+"\n", function (err){});

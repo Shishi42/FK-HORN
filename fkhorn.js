@@ -12,6 +12,21 @@ const twitch_client = new tmi.Client({
 const jsonfile = require ("jsonfile")
 const fs = require("fs")
 
+bot.months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
+]
+
 bot.commands = new Discord.Collection()
 bot.aliases = new Discord.Collection()
 fs.readdir("./commands/", (err, files) => {
