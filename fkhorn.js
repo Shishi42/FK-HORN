@@ -1,16 +1,13 @@
 const Discord = require("discord.js")
-const config = require("./config.json")
 const bot = new Discord.Client()
 
-const tmi = require('tmi.js');
-
-const twitch_client = new tmi.Client({
-	connection: { reconnect: true },
-	channels: [ config.twitch_channel ]
-});
+const auth = require("@twurple/auth")
+const chat = require("@twurple/chat")
+const pubsub = require("@twurple/pubsub")
 
 const jsonfile = require ("jsonfile")
 const fs = require("fs")
+const fsp = require('fs').promises
 
 bot.months = [
   'Jan',
@@ -89,11 +86,6 @@ bot.on("message", async message => {
   }
 })
 
-twitch_client.on('message', (channel, tags, message, self) => {
-  if(self || !message.startsWith(config.prefix)) return
-	if(bot.live_mode == false) return
-  if((tags.mod == false) && (channel != "#"+tags.username) && (tags.username != config.twitch_owner) && (tags.badges == null || tags.badges.vip == undefined)) return
-	if(bot.last_horn.getTime()+5000 > new Date().getTime()) return
 
 	bot.last_horn = new Date()
 

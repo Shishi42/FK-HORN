@@ -23,9 +23,12 @@
   "homepage": "https://github.com/Shishi42/FK-HORN#readme",
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
+    "@twurple/api": "^5.0.18",
+    "@twurple/auth": "^5.0.18",
+    "@twurple/chat": "^5.0.18",
+    "@twurple/pubsub": "^5.0.18",
     "discord.js": "^12.5.3",
     "fs": "0.0.1-security",
-    "jsonfile": "^6.0.1",
-    "tmi.js": "^1.7.5"
+    "jsonfile": "^6.0.1"
   }
 }
