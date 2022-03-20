@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
       .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
       .setTimestamp()
       .setAuthor('Tirage des vice-capitaines', bot.user.displayAvatarURL(), "")
-      .setDescription('Les élus du mois sont :');
+      .setDescription('Les élus du mois sont :')
 
   var ban = Array.from(message.mentions.users.keys())
 
@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
     if(usr.nickname == null) name = usr.user.username
     else name = usr.nickname
     embed.addField(name, '@'+usr.user.username+'#'+usr.user.discriminator)
-  });
+  })
 
   logs(message, elu, ban)
 
@@ -57,20 +57,20 @@ module.exports.run = async (bot, message, args) => {
     elu.forEach(tir => {
       usr = message.guild.members.cache.get(tir).user
       temp_name.push('@'+usr.username+'#'+usr.discriminator)
-    });
+    })
 
     temp_ban = []
     bans.forEach(ban => {
       usr = message.guild.members.cache.get(ban).user
       temp_ban.push('@'+usr.username+'#'+usr.discriminator)
-    });
+    })
     if(temp_ban.length == 0) temp_ban.push("NO BAN")
 
     logs = 'Tirage vice-capitaine par '+message.author.username+': '+temp_name+' --> fait le '+date+'. BAN : '+temp_ban
 
-    fs.appendFileSync('logs.txt', logs+"\n", function (err){});
+    fs.appendFileSync('logs.txt', logs+"\n", function (err){})
 
-    console.log(logs);
+    console.log(logs)
   }
 
   message.channel.send(embed)

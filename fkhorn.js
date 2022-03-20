@@ -111,4 +111,4 @@ function updateCollections(){
   //console.log("Getting collections : "+bot.sound_collections)
 }
 
-bot.login(config.token);
+bot.login(config.token)

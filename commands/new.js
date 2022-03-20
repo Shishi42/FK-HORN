@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
       .setColor('#553380')
       .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
       .setTimestamp()
-      .setAuthor(bot.user.username+' New Sounds List ('+new_sounds.list.length+' new)', bot.user.displayAvatarURL(), "");
+      .setAuthor(bot.user.username+' New Sounds List ('+new_sounds.list.length+' new)', bot.user.displayAvatarURL(), "")
 
       for (i = 0; i < new_sounds.list.length; i++){
         embed.addField(config.prefix+new_sounds.list[i], '\u200b')

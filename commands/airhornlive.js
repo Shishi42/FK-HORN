@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
   if(voice_channel != undefined){
     voice_channel.join().then((connection) => {
       const dispatcher = connection.play(path.join(__dirname, song))
-      dispatcher.on("finish", () => voice_channel.leave());
+      dispatcher.on("finish", () => voice_channel.leave())
     }).catch((error) =>{
       console.error(error)
       voice_channel.leave()
@@ -33,9 +33,9 @@ module.exports.run = async (bot, message, args) => {
     date = "["+temp_date.getHours()+":"+temp_date.getMinutes()+":"+temp_date.getSeconds()+" - "+temp_date.getDate()+" "+bot.months[temp_date.getMonth()]+" "+temp_date.getFullYear()+"]"
     logs = "Playing : "+ collection_name +" : " + song + " | at "+date+" | on "+channel.guild.name+"/"+channel.name+" by "+author+" on TWITCH."
 
-    fs.appendFileSync('logs.txt', logs+"\n", function (err){});
+    fs.appendFileSync('logs.txt', logs+"\n", function (err){})
 
-    console.log(logs);
+    console.log(logs)
   }
 }
 

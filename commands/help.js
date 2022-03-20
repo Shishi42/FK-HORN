@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
   const embed = new Discord.MessageEmbed()
       .setColor('#553380')
       .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
-      .setTimestamp();
+      .setTimestamp()
 
   if(commands.includes(args[0])){
 
@@ -31,9 +31,7 @@ module.exports.run = async (bot, message, args) => {
     }
   }else{
     embed.setAuthor(bot.user.username+' Help Menu', bot.user.displayAvatarURL(), "")
-    embed.setDescription([
-	`Available commands for ${bot.user.username}`,
-	]);
+    embed.setDescription([`Available commands for ${bot.user.username}`,])
     for (i = 0; i < commands.length; i++){
       embed.addField(config.prefix+commands[i], bot.commands.get(commands[i]).config.desc)
     }
