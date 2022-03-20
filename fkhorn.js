@@ -9,61 +9,13 @@ const jsonfile = require ("jsonfile")
 const fs = require("fs")
 const fsp = require('fs').promises
 
-bot.months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-]
-
-bot.commands = new Discord.Collection()
-bot.aliases = new Discord.Collection()
-fs.readdir("./commands/", (err, files) => {
-
-  if(err) console.log(err)
-
-  let jsfile = files.filter(f => f.split(".").pop() === "js")
-
-  if(jsfile.length <= 0){
-    return console.log("[LOGS] commands not found!")
-  }
-
-  //console.log("[LOGS] commands found :")
-  jsfile.forEach((f, i) => {
-    //console.log(f)
-    let pull = require(`./commands/${f}`)
-    bot.commands.set(pull.config.name, pull)
-    pull.config.aliases.forEach(alias => {
-      bot.aliases.set(alias, pull.config.name)
-    })
-  })
-})
+const config = require("./config.json")
+const tokenData = require("./refresh_tokens.json")
+const tokenDataFK = require("./refresh_tokens_fk.json")
 
 bot.on("ready", async () => {
+	init()
   console.log(`Connecté en tant que ${bot.user.tag}!`)
-  if(fs.existsSync("./not_safe.json")){
-    bot.not_safe = jsonfile.readFileSync("./not_safe.json")
-  }
-
-  twitch_client.connect();
-
-  bot.user.setPresence({status : 'online', activity: { name: '!list for list of sounds', type: 'WATCHING', url: 'https://imgur.com/a/vcd3iW6' }});
-
-  bot.live_mode = false
-  bot.sound_collections = []
-	bot.last_horn = new Date()
-	bot.stream_channel = config.stream_channel
-
-  try {updateCollections()}
-  catch(error) {console.error(error)}
 })
 
 bot.on("message", async message => {
@@ -74,11 +26,12 @@ bot.on("message", async message => {
   let cmd = messageArray[0]
   let args = messageArray.slice(1)
 
+	// soundboard commands shortcut
   if(bot.sound_collections.includes(cmd.slice(prefix.length))){
-    let airhorn_number = -1
-    if(Number.isInteger(parseInt(args[0]))) airhorn_number = args[0]
+    let sound_number = -1
+    if(Number.isInteger(parseInt(args[0]))) sound_number = args[0]
     let commandFile = bot.commands.get("airhorn")
-    if(commandFile) commandFile.run(bot, message, cmd.slice(prefix.length)+" "+airhorn_number)
+    if(commandFile) commandFile.run(bot, message, cmd.slice(prefix.length)+" "+sound_number)
   }
   else{
     let commandFile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
@@ -86,21 +39,59 @@ bot.on("message", async message => {
   }
 })
 
+bot.twitch_client.onMessage((channel, user, message) => {
+	//
+})
 
-	bot.last_horn = new Date()
+function init(){
 
-	const args = message.slice(1).split(' ');
-	const command = args.shift().toLowerCase();
+	bot.commands = new Discord.Collection()
+	bot.aliases = new Discord.Collection()
+	fs.readdir("./commands/", (err, files) => {
 
-  if(bot.sound_collections.includes(command)){
-    let commandFile = bot.commands.get("airhornlive")
-    if(commandFile) commandFile.run(bot, "twitch:"+tags.username, command)
-  }
-});
+	  if(err) console.log(err)
 
-function updateCollections(){
-  bot.sound_collections = fs.readdirSync("./audio/")
-  //console.log("Getting collections : "+bot.sound_collections)
+	  let jsfile = files.filter(f => f.split(".").pop() === "js")
+
+	  if(jsfile.length <= 0){
+	    return console.log("[LOGS] commands not found!")
+	  }
+
+	  jsfile.forEach((f, i) => {
+	    let pull = require(`./commands/${f}`)
+	    bot.commands.set(pull.config.name, pull)
+	    pull.config.aliases.forEach(alias => {
+	      bot.aliases.set(alias, pull.config.name)
+	    })
+	  })
+	})
+
+	bot.sound_collections = []
+	try {bot.sound_collections = fs.readdirSync("./audio/")}
+	catch(error) {console.error(error)}
+
+	if(fs.existsSync("./not_safe.json")){
+		bot.not_safe = jsonfile.readFileSync("./not_safe.json")
+	}
+
+	bot.live_mode = false
+	bot.stream_channel = config.stream_channel
+
+	bot.user.setPresence({status : 'online', activity: { name: '!list for list of sounds', type: 'WATCHING' }})
+	bot.months = [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec'
+	]
 }
 
 bot.login(config.token)
