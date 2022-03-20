@@ -13,6 +13,32 @@ const config = require("./config.json")
 const tokenData = require("./refresh_tokens.json")
 const tokenDataFK = require("./refresh_tokens_fk.json")
 
+clientId = config.token_id_fk
+clientSecret = config.token_secret_fk
+
+bot.authfk = new auth.RefreshingAuthProvider(
+	{
+		clientId,
+		clientSecret,
+		onRefresh: async newTokenData => await fsp.writeFile('./refresh_tokens.json', JSON.stringify(newTokenData, null, 4), 'UTF-8')
+	},
+	tokenDataFK)
+
+clientId = config.token_id
+clientSecret = config.token_secret
+
+const authProvider = new auth.RefreshingAuthProvider(
+	{
+		clientId,
+		clientSecret,
+		onRefresh: async newTokenData => await fsp.writeFile('./refresh_tokens_fk.json', JSON.stringify(newTokenData, null, 4), 'UTF-8')
+	},
+	tokenData)
+bot.auth = authProvider
+
+bot.twitch_client = new chat.ChatClient({authProvider, channels: ['fk_aeon'] })
+bot.twitch_client.connect()
+
 bot.on("ready", async () => {
 	init()
   console.log(`Connecté en tant que ${bot.user.tag}!`)
