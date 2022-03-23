@@ -1,7 +1,5 @@
 const Discord = require("discord.js")
 const config = require("../config.json")
-const auth = require("@twurple/auth")
-const pubsub = require("@twurple/pubsub")
 
 module.exports.run = async (bot, message, args) => {
   if(message.member != config.bot_owner) return message.reply("You must be bot owner")
@@ -21,21 +19,9 @@ module.exports.run = async (bot, message, args) => {
       }
     }
 
-    bot.pubSub_client = new pubsub.PubSubClient()
-    const userId = await bot.pubSub_client.registerUserListener(bot.authfk)
-
-    bot.reward_listener = await bot.pubSub_client.onRedemption(userId, (message) => {
-      console.log(message.rewardId)
-      console.log(message.redemptionDate)
-      console.log(message.rewardCost)
-      console.log(message.userDisplayName)
-    })
-
   }else if(args[0].toUpperCase() == "OFF"){
     bot.live_mode = false
     message.channel.send("```Live-mode set to OFF```")
-
-    if(bot.reward_listener !== undefined) bot.reward_listener.remove()
 
   }else if(args[0].toUpperCase() == "STATUS"){
     str = "```"

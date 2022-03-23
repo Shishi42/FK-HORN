@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const bot = new Discord.Client()
 
 const auth = require("@twurple/auth")
-const chat = require("@twurple/chat")
+// const chat = require("@twurple/chat")
 const pubsub = require("@twurple/pubsub")
 
 const jsonfile = require ("jsonfile")
@@ -10,7 +10,7 @@ const fs = require("fs")
 const fsp = require('fs').promises
 
 const config = require("./config.json")
-const tokenData = require("./refresh_tokens.json")
+// const tokenData = require("./refresh_tokens.json")
 const tokenDataFK = require("./refresh_tokens_fk.json")
 
 clientId = config.token_id_fk
@@ -20,24 +20,23 @@ bot.authfk = new auth.RefreshingAuthProvider(
 	{
 		clientId,
 		clientSecret,
-		onRefresh: async newTokenData => await fsp.writeFile('./refresh_tokens.json', JSON.stringify(newTokenData, null, 4), 'UTF-8')
+		onRefresh: async newTokenData => await fsp.writeFile('./refresh_tokens_fk.json', JSON.stringify(newTokenData, null, 4), 'UTF-8')
 	},
 	tokenDataFK)
 
-clientId = config.token_id
-clientSecret = config.token_secret
+// clientId = config.token_id
+// clientSecret = config.token_secret
 
-const authProvider = new auth.RefreshingAuthProvider(
-	{
-		clientId,
-		clientSecret,
-		onRefresh: async newTokenData => await fsp.writeFile('./refresh_tokens_fk.json', JSON.stringify(newTokenData, null, 4), 'UTF-8')
-	},
-	tokenData)
-bot.auth = authProvider
-
-bot.twitch_client = new chat.ChatClient({authProvider, channels: ['fk_aeon'] })
-bot.twitch_client.connect()
+// const authProvider = new auth.RefreshingAuthProvider(
+// 	{
+// 		clientId,
+// 		clientSecret,
+// 		onRefresh: async newTokenData => await fsp.writeFile('./refresh_tokens.json', JSON.stringify(newTokenData, null, 4), 'UTF-8')
+// 	},
+// 	tokenData)
+//
+// bot.twitch_client = new chat.ChatClient({authProvider, channels: ['fk_aeon'] })
+// bot.twitch_client.connect()
 
 bot.on("ready", async () => {
 	init()
@@ -65,9 +64,9 @@ bot.on("message", async message => {
   }
 })
 
-bot.twitch_client.onMessage((channel, user, message) => {
-	//
-})
+// bot.twitch_client.onMessage((channel, user, message) => {
+// 	//
+// })
 
 function init(){
 
@@ -90,6 +89,7 @@ function init(){
 	      bot.aliases.set(alias, pull.config.name)
 	    })
 	  })
+		bot.commands.get("rewards").run(bot, "rewards", "")
 	})
 
 	bot.sound_collections = []
