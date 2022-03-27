@@ -2,7 +2,9 @@ const Discord = require("discord.js")
 const config = require("../config.json")
 
 module.exports.run = async (bot, message, args) => {
-  if(message.member != config.bot_owner && message.member.roles.cache.get(957310205920681994) == undefined) return message.reply("You must be bot owner or streamer")
+  if(message.member != config.bot_owner &&
+    bot.guilds.cache.get("474666633378529280").members.cache.get(message.member.id).roles.cache.get("681969539843751979") == undefined)
+    return message.reply("You must be bot owner or streamer.")
 
   if(args[0] === undefined) return
 
