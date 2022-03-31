@@ -45,10 +45,15 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
 
-	if(message.content == "https://tenor.com/view/bad-smell-arsenal-gif-23891771"){
-		message.reply("j'en peux plus de ton gif de merde par pitié stop.")
-		return
-	}
+  if(message.content == "https://tenor.com/view/bad-smell-arsenal-gif-23891771"){
+    message.reply("j'en peux plus de ton gif de merde par pitié arrête.")
+    return
+  }
+	
+  if(message.content.toUpperCase() == "FEUR"){
+    message.reply("ratio + t'es pas très beau + tes parents n'ont jamais été fiers de toi.")
+    return
+  }
 
   if (message.author.bot || message.channel.type === "dm" || !message.content.startsWith(config.prefix)) return
 
