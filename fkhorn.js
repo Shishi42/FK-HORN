@@ -44,6 +44,12 @@ bot.on("ready", async () => {
 })
 
 bot.on("message", async message => {
+
+	if(message.content == "https://tenor.com/view/bad-smell-arsenal-gif-23891771"){
+		message.reply("j'en peux plus de ton gif de merde par pitié stop.")
+		return
+	}
+
   if (message.author.bot || message.channel.type === "dm" || !message.content.startsWith(config.prefix)) return
 
   let prefix = config.prefix
