@@ -20,7 +20,7 @@ bot.authfk = new auth.RefreshingAuthProvider(
 	{
 		clientId,
 		clientSecret,
-		onRefresh: async newTokenData => await fsp.writeFile('./refresh_tokens_fk.json', JSON.stringify(newTokenData, null, 4), 'UTF-8')
+		onRefresh: async newTokenData => await fs.writeFile('./refresh_tokens_fk.json', JSON.stringify(newTokenData, null, 4), 'UTF-8')
 	},
 	tokenDataFK)
 
