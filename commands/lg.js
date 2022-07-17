@@ -44,7 +44,7 @@ module.exports.run = async (bot, message, args) => {
     console.error(error)
   }
 
-  message.channel.send(embed)
+  message.guild.channels.cache.get(config.mdj).send(embed)
   return message.delete()
 
   function purge_role(alive_id, dead_id){
