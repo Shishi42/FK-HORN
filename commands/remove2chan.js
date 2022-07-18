@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "remove2chan",
   aliases: ["remove"],
-  args: ["channel", "[@members]"],
+  args: ["channel", "@members"],
   usage: ["remove2chan <args>"],
   desc: "Remove members from a channel."
 }

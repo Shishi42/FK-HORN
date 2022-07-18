@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "add2chan",
   aliases: ["add"],
-  args: ["channel", "[@members]"],
+  args: ["channel", "@members"],
   usage: ["add2chan <args>"],
   desc: "Add members to a channel."
 }
