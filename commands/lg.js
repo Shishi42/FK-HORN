@@ -19,17 +19,42 @@ module.exports.run = async (bot, message, args) => {
   old_alive_role = message.guild.roles.cache.find(r => r.name === "Vivant")
   dead_role = message.guild.roles.cache.find(r => r.name === "Mort")
 
-  await purge_role(old_alive_role.id, dead_role.id)
+  try{
+    await purge_role(old_alive_role.id, dead_role.id)
+  }catch(error){
+    create_role()
+  }
 
   const embed = new Discord.MessageEmbed()
       .setColor('#553380')
       .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
       .setTimestamp()
-      .setAuthor('Tirage des roles pour LG', bot.user.displayAvatarURL(), "")
+      .setAuthor('Tirage des rôles pour LG', bot.user.displayAvatarURL(), "")
+
+  const list_embed = new Discord.MessageEmbed()
+      .setColor('#553380')
+      .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
+      .setTimestamp()
+      .setAuthor('Nouvelle Partie de LG', bot.user.displayAvatarURL(), "")
+
+  mentions_array = []
+  players_array.forEach((item, _) => {
+    mentions_array.push(item[1])
+  })
+
+  list_embed.addField("Liste des Joueurs", mentions_array)
+  list_embed.addField("Liste des Rôles", roles)
 
   for(i=0; i<players_array.length; i++){
     random_id = Math.floor(Math.random() * roles.length)
     embed.addField(roles[random_id], players_array[i][1])
+
+    player_id = players_array[i][0]
+    bot.users.cache.get(player_id).send(`Tu es **__${roles[random_id]}__** pour cette partie, bonne chance.`)
+      .catch(error => {
+        message.channel.send(`${bot.users.cache.get(player_id)} autorise les DM des personnes sur ce serveur stp, contacte le MDJ pour avoir ton rôle pour cette partie.`)
+      })
+
     roles.splice(random_id, 1)
   }
 
@@ -37,13 +62,14 @@ module.exports.run = async (bot, message, args) => {
   alive_role = message.guild.roles.cache.find(r => r.name === "Vivant")
 
   try{
-    players.forEach((p, i) => {
+    players.forEach((p, _) => {
       p.roles.add(alive_role)
     });
   }catch(error){
     console.error(error)
   }
 
+  message.channel.send(list_embed)
   message.guild.channels.cache.get(config.mdj).send(embed)
   return message.delete()
 
@@ -73,6 +99,25 @@ module.exports.run = async (bot, message, args) => {
     }
     })
     dead_role.delete('I had to.')
+  }
+
+  function create_role(){
+    message.guild.roles.create({
+    data: {
+    name: "Vivant",
+    color: [46, 204, 113],
+    hoist: true,
+    mentionable: true
+    }
+    })
+    message.guild.roles.create({
+      data: {
+      name: "Mort",
+      color: [153, 45, 34],
+      hoist: true,
+      mentionable: true
+      }
+    })
   }
 }
 
