@@ -1,17 +1,24 @@
 const Discord = require("discord.js")
-const config = require("../config.json")
 
-module.exports.run = async (bot, message, args) => {
-  if(args.length != 0){
-    message.channel.send(args.join(' '))
-  }
-  return message.delete()
-}
+module.exports = {
 
-module.exports.config = {
   name: "say",
-  aliases: ["echo","tell","print"],
-  args: ["<message>"],
-  usage: ["say <message>"],
-  desc: "Resend the specified message and delete the original."
+  description: "Send back what you say",
+  permission: null,
+  dm: true,
+  category: "Utility",
+  options: [
+    {
+      type: "string",
+      name: "text",
+      description: "The text you want the bot to say back",
+      required: true,
+      autocomplete: false,
+    }
+  ],
+
+  async run(bot, message, args) {
+    await message.channel.send(args.get("text").value)
+    return await message.reply({content: "Done.", ephemeral: true})
+  }
 }

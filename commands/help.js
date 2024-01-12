@@ -1,51 +1,52 @@
 const Discord = require("discord.js")
-const config = require("../config.json")
 
-const path = require('path')
-const fs = require("fs")
+module.exports = {
 
-module.exports.run = async (bot, message, args) => {
-
-  commands = Array.from(bot.commands.keys())
-
-  const embed = new Discord.MessageEmbed()
-      .setColor('#553380')
-      .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
-      .setTimestamp()
-
-  if(commands.includes(args[0])){
-
-    embed.setAuthor((args[0].charAt(0).toUpperCase() + args[0].slice(1))+" Command Help", bot.user.displayAvatarURL(), "")
-    embed.setDescription([
-      `**❯ Description:** ${bot.commands.get(args[0]).config.desc}`,
-      `**❯ Aliases:** ${(bot.commands.get(args[0]).config.aliases.length) ? bot.commands.get(args[0]).config.aliases.map(alias => `\`${alias}\``).join(' ') : 'No Aliases'}`,
-      `**❯ Arguments:** ${(bot.commands.get(args[0]).config.args.length) ? bot.commands.get(args[0]).config.args.map(args => `\`${args}\``).join(' ') : 'No Args'}`,
-      `**❯ Usage:** ${config.prefix}${bot.commands.get(args[0]).config.usage}`
-    ])
-  }else if(bot.sound_collections.includes(args[0])){
-    collection_name = args[0]
-    sound_collection = fs.readdirSync(path.join(__dirname, "../audio/"+collection_name))
-    embed.setAuthor(args[0]+" Sound List", bot.user.displayAvatarURL(), "")
-    for (i = 0; i < sound_collection.length; i++){
-      embed.addField(""+((i+1).toString())+". ", sound_collection[i])
-    }
-  }else{
-    embed.setAuthor(bot.user.username+' Help Menu', bot.user.displayAvatarURL(), "")
-    embed.setDescription([`Available commands for ${bot.user.username}`,])
-    for (i = 0; i < commands.length; i++){
-      embed.addField(config.prefix+commands[i], bot.commands.get(commands[i]).config.desc)
-    }
-    embed.addField("Use "+config.prefix+"help <command> for more info.", '\u200b')
-  }
-
-  message.channel.send(embed)
-  return message.delete()
-}
-
-module.exports.config = {
   name: "help",
-  aliases: ["h","helpme"],
-  args: ["<command>"],
-  usage: ["help", "help <command>"],
-  desc: "Display command list or specified command info."
+  description: "Show help menu",
+  permission: null,
+  dm: true,
+  category: "Utility",
+  options: [
+    {
+      type: "string",
+      name: "command",
+      description: "Command to show",
+      required: false,
+      autocomplete: true,
+    }
+  ],
+
+  async run(bot, message, args) {
+
+    let command
+    if(args.get("command")){
+      command = bot.commands.get(args.get("command").value)
+      if(!command) return message.reply({ content: "No command with this name.", ephemeral : true })
+    }
+    
+    let embed = new Discord.EmbedBuilder()
+    .setColor(bot.color)
+    .setThumbnail(bot.user.displayAvatarURL({dynamic: true}))
+    .setTimestamp()
+    .setFooter({text: 'a BOT by @shishi4272', iconURL: 'https://www.iconpacks.net/icons/2/free-twitter-logo-icon-2429-thumb.png'})
+
+    if(!command){
+
+      categories = []
+      bot.commands.forEach(command => { if(!categories.includes(command.category)) categories.push(command.category) })
+      embed.setTitle("BOT Commands List")
+      embed.setDescription(`Available commands : \`${bot.commands.size}\` \nAvailable categories : \`${categories.length}\``)
+
+      await categories.sort().forEach(async cat => {
+        let commands = bot.commands.filter(cmd => cmd.category === cat)
+        embed.addFields({name: `${cat}`, value: `${commands.map(cmd => `\`${cmd.name}\` : ${cmd.description}`).join("\n")}`})
+      })
+
+    } else {
+      embed.setTitle(`${command.name}`)
+      embed.setDescription(`Description : \`${command.description}\` \nRequired permissions : \`${typeof command.permission !== "bigint" ? command.permission !== null ? command.permission : "Any" : new Discord.PermissionsBitField(command.permission).toArray(false)}\` \nCommand in DM : \`${command.dm ? "Yes" : "No"}\` \nCategory : \`${command.category}\``)
+    }
+    return await message.reply({embeds: [embed]})
+  }
 }
