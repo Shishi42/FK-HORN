@@ -1,6 +1,6 @@
 {
   "name": "FK-HORN",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Discord BOT for FKÆON",
   "main": "fkhorn.js",
   "repository": {
@@ -17,10 +17,10 @@
   "license": "MIT",
   "dependencies": {
     "@discord-player/extractor": "^4.4.4",
-    "@discordjs/opus": "^0.9.0",
     "@discordjs/voice": "^0.14.0",
     "discord-player": "^6.6.4",
     "discord.js": "^14.8.0",
-    "ytdl-core": "^4.11.5"
+    "mediaplex": "^0.0.9",
+    "youtube-ext": "^1.1.16"
   }
 }
