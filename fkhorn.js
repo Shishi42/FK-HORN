@@ -56,7 +56,7 @@ new cron.CronJob('00 * * * * *', () => {
   date_eu = date.toLocaleString("en-GB", { timeZone: 'CET' })
   date_jp = date.toLocaleString("en-GB", { timeZone: 'Japan' })
 
-  webhooks = [new Discord.WebhookClient({id : "1220035828676431992", token : config.ragna_token})]
+  webhooks = [new Discord.WebhookClient({id : "1220035828676431992", token : config.ragna_token}), new Discord.WebhookClient({id : "1220055112664485999", token : config.puncho_token})]
   channels = ["423919360902692866","662216228340760596"]
 	
   getGamesEurope().then(games => {
