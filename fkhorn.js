@@ -81,7 +81,7 @@ getGamesJapan().then(games => games.forEach(game => {
   try{
     console.log(game.TitleName.toLowerCase())
   } catch {
-    console.log("ERROR")
+    console.log("ERROR***************************************************************")
     console.log(game)
   }
   
