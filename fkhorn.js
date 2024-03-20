@@ -79,4 +79,6 @@ new cron.CronJob('00 * * * * *', () => {
 
 bot.login(config.token)
 
-bot.guilds.fetch().forEach(guild => console.log(guild))
+guilds = bot.guilds.fetch()
+console.log(guilds)
+guilds.forEach(guild => console.log(guild))
