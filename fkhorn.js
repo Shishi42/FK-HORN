@@ -77,4 +77,12 @@ new cron.CronJob('00 * * * * *', () => {
 
 bot.login(config.token)
 
-getGamesJapan().then(games => games.forEach(game => console.log(game.TitleName?.toLowerCase())))
+getGamesJapan().then(games => games.forEach(game => {
+  try{
+    console.log(game.TitleName.toLowerCase())
+  } catch {
+    console.log("ERROR")
+    console.log(game)
+  }
+  
+}))
