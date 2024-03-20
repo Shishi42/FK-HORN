@@ -59,7 +59,7 @@ new cron.CronJob('00 * * * * *', () => {
     filtered.length ?
       filtered.forEach(game => {
         bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.title}** by __${game.developer}__ was found on the **European eShop** :flag_eu: @everyone`))
-        //bot.channels.fetch("662216228340760596").then(chan => chan.send(`\`${date_str}\` **${game.title}** by __${game.developer}__ was found on the **European eShop** :flag_eu:`))
+        bot.channels.fetch("662216228340760596").then(chan => chan.send(`\`${date_str}\` **${game.title}** by __${game.developer}__ was found on the **European eShop** :flag_eu:`))
       }) :
       bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` : no hit for **Inazuma Eleven** on the **European eShop** :flag_eu:`))
   })
@@ -69,7 +69,7 @@ new cron.CronJob('00 * * * * *', () => {
     filtered.length ?
       filtered.forEach(game => {
         bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** :flag_jp: @everyone`))
-        //bot.channels.fetch("662216228340760596").then(chan => chan.send(`\`${date_str}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** :flag_jp:`))
+        bot.channels.fetch("662216228340760596").then(chan => chan.send(`\`${date_str}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** :flag_jp:`))
       }) :
       bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` : no hit for **イナズマイレブン** on the **Japanese eShop** :flag_jp:`))
   })
