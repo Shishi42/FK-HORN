@@ -65,7 +65,7 @@ new cron.CronJob('00 * * * * *', () => {
   })
 
   getGamesJapan().then(games => {
-    filtered = games.filter((game) => game.TitleName.includes("イナズマ"))
+    filtered = games.filter((game) => game.TitleName.toString().includes("イナズマ"))
     filtered.length ?
       filtered.forEach(game => {
         bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** :flag_jp: @everyone`))
@@ -76,13 +76,3 @@ new cron.CronJob('00 * * * * *', () => {
 }).start()
 
 bot.login(config.token)
-
-getGamesJapan().then(games => games.forEach(game => {
-  try {
-    console.log(game.TitleName.toString().toLowerCase())
-  } catch (e){
-    console.log(game)
-    throw e
-  }
-  
-}))
