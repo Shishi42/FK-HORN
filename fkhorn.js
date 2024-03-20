@@ -58,14 +58,13 @@ new cron.CronJob('00 * * * * *', () => {
     filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma"))
     filtered.length ?
       filtered.forEach(game => {
-        bot.channels.get("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.title}** was found on the European eShop. @everyone`))
+        bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.title}** was found on the European eShop. @everyone`))
       }) :
-      bot.channels.get("1219989241782599801").then(chan => chan.send(`\`${date_str}\` No hit for Inazuma Eleven on the European eShop.`))
+      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` No hit for Inazuma Eleven on the European eShop.`))
   })
 
 }).start()
 
 bot.login(config.token)
 
-console.log(bot.channels)
-console.log(bot.guilds)
+bot.guilds.forEach(guild => console.log(guild))
