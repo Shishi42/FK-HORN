@@ -59,13 +59,14 @@ new cron.CronJob('00 * * * * *', () => {
 	
   getGamesEurope().then(games => {
     filtered = games.filter((game) => game.title.toLowerCase().includes("pokémon") || game.title.toLowerCase().includes("イナズマ"))
-    filtered.length ?
-      filtered.forEach(game => {
+    if (filtered.length){
+      for(game of filtered){
         res = `:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop**`
         bot.channels.fetch("423919360902692866").then(chan => chan.send(res))
         //bot.channels.fetch("662216228340760596").then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop**`))
         //webhook.send(`:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop**`)
-      }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`))
+      }
+    } else bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`))
   })
 
   getGamesJapan().then(games => {
