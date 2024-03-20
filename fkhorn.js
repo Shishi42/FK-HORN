@@ -73,8 +73,8 @@ new cron.CronJob('00 * * * * *', () => {
       }) :
       bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` : no hit for **Inazuma Eleven** on the **Japanese eShop** :flag_jp:`))
   })
-
-
 }).start()
 
 bot.login(config.token)
+
+getGamesJapan().then(games => console.log(games))
