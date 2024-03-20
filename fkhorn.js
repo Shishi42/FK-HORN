@@ -55,7 +55,7 @@ new cron.CronJob('00 * * * * *', () => {
   //date_str = date.getDate().toString().padStart(2,"0")+'/'+(date.getMonth()+1).toString().padStart(2,"0")+'/'+date.getFullYear()+' - '+date.getHours().toString().padStart(2,"0")+':'+date.getMinutes().toString().padStart(2,"0")
   date_eu = date.toLocaleString("en-GB", { timeZone: 'CET' })
   date_jp = date.toLocaleString("en-GB", { timeZone: 'Japan' })
-  webhook = Discord.WebhookClient({id : "1220035828676431992", token : config.ragna_token})
+  webhook = new Discord.WebhookClient({id : "1220035828676431992", token : config.ragna_token})
 	
   getGamesEurope().then(games => {
     filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.toLowerCase().includes("イナズマ"))
