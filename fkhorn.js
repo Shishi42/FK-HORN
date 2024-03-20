@@ -60,10 +60,11 @@ new cron.CronJob('00 * * * * *', () => {
   channels = ["423919360902692866","726239440602660874"]
 	
   getGamesEurope().then(games => {
-    filtered = games.filter((game) => game.title.toLowerCase().includes("xenoblade") || game.title.toLowerCase().includes("イナズマ"))
+    filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.toLowerCase().includes("イナズマ"))
     filtered.length ?
       filtered.forEach(filter => {
-        channels.forEach(channel => bot.channels.fetch(channel).then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`)))
+        res = `:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`
+        channels.forEach(channel => bot.channels.fetch(channel).then(chan => chan.send(res)))
         //webhooks.forEach(webhook => webhook.send(`:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`))
       }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`))
   })
