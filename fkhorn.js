@@ -66,3 +66,6 @@ new cron.CronJob('00 * * * * *', () => {
 }).start()
 
 bot.login(config.token)
+
+console.log(bot.channels)
+console.log(bot.guilds)
