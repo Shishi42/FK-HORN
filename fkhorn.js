@@ -57,5 +57,5 @@ new cron.CronJob('00 * * * * *', () => {
 bot.login(config.token)
 
 
-getGamesEurope().then(games => console.log(games))
-getGamesEurope().then(games => console.log(games.filter(game => game.title.includes("Pokemon"))))
+//getGamesEurope().then(games => console.log(games))
+getGamesEurope().then(games => console.log(games.filter(game => game.title.includes("Pokémon"))))
