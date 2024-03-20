@@ -62,7 +62,7 @@ new cron.CronJob('00 * * * * *', () => {
     filtered.length ?
       filtered.forEach(game => {
         res = `:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop**`
-        bot.channels.fetch("1219989241782599801").then(chan => chan.send(res+" @everyone"))
+        bot.channels.fetch("726239440602660874").then(chan => chan.send(res+" @everyone"))
         console.log(res)
         //bot.channels.fetch("662216228340760596").then(chan => chan.send(res))
       }) : 
