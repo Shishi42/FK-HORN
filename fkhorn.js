@@ -55,7 +55,7 @@ new cron.CronJob('00 * * * * *', () => {
   date_str = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' - '+date.getHours()+':'+date.getMinutes()
 
   getGamesEurope().then(games => {
-    filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.toLowerCase().includes("イナズマ"))
+    filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.includes("イナズマ"))
     filtered.length ?
       filtered.forEach(game => {
         bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.title}** by __${game.developer}__ was found on the **European eShop** :flag_eu: @everyone`))
@@ -65,7 +65,7 @@ new cron.CronJob('00 * * * * *', () => {
   })
 
   getGamesJapan().then(games => {
-    filtered = games.filter((game) => game.TitleName.toLowerCase().includes("inazuma") || game.TitleName.toLowerCase().includes("イナズマ"))
+    filtered = games.filter((game) => game.TitleName.toLowerCase().includes("inazuma") || game.TitleName.includes("イナズマ"))
     filtered.length ?
       filtered.forEach(game => {
         bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** :flag_jp: @everyone`))
