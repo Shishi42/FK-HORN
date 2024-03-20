@@ -55,16 +55,15 @@ new cron.CronJob('00 * * * * *', () => {
   //date_str = date.getDate().toString().padStart(2,"0")+'/'+(date.getMonth()+1).toString().padStart(2,"0")+'/'+date.getFullYear()+' - '+date.getHours().toString().padStart(2,"0")+':'+date.getMinutes().toString().padStart(2,"0")
   date_eu = date.toLocaleString("en-GB", { timeZone: 'CET' })
   date_jp = date.toLocaleString("en-GB", { timeZone: 'Japan' })
-  //webhooks = [new Discord.WebhookClient({id : "1220035828676431992", token : config.ragna_token})]
-  webhooks = [new Discord.WebhookClient({id : "1220052135559958641", token : "F6heM5RDBINKJHET2DK9GcGaSWRKRJGDRn1KqlPYvtkBC_lvghLnO1yhZRixHa1xjzh4"}), new Discord.WebhookClient({id : "1220052269349994636", token : "1iQfFbOjy0F_i055mK9jTK1h7t5sA5hMq4OcoJzOnA9cWiXxyRrl3nOpvRIysB0_WluA"})]
-  //channels = ["423919360902692866","662216228340760596"]
-  channels = ["423919360902692866","726239440602660874"]
+
+  webhooks = [new Discord.WebhookClient({id : "1220035828676431992", token : config.ragna_token})]
+  channels = ["423919360902692866","662216228340760596"]
 	
   getGamesEurope().then(games => {
-    filtered = games.filter((game) => game.title.toLowerCase().includes("xenoblade") || game.title.toLowerCase().includes("イナズマ"))
+    filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.toLowerCase().includes("イナズマ"))
     filtered.length ?
       filtered.forEach(filter => {
-        //channels.forEach(channel => bot.channels.fetch(channel).then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`)))
+        channels.forEach(channel => bot.channels.fetch(channel).then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`)))
         webhooks.forEach(webhook => webhook.send(`:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`))
       }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`))
   })
@@ -73,9 +72,8 @@ new cron.CronJob('00 * * * * *', () => {
     filtered = games.filter((game) => game.TitleName.toString().includes("inazuma") || game.TitleName.toString().includes("イナズマ"))
     filtered.length ?
       filtered.forEach(filter => {
-        bot.channels.fetch("423919360902692866").then(chan => chan.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** @everyone`))
-        bot.channels.fetch("662216228340760596").then(chan => chan.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`))
-        webhook.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`)
+        channels.forEach(channel => bot.channels.fetch(channel).then(chan => chan.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`)))
+        webhooks.forEach(webhook => webhook.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`))
       }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_jp: \`${date_jp}\` : no hit for **イナズマイレブン** on the **Japanese eShop**`))
   })
 }).start()
