@@ -58,7 +58,7 @@ new cron.CronJob('00 * * * * *', () => {
   webhook = new Discord.WebhookClient({id : "1220035828676431992", token : config.ragna_token})
 	
   getGamesEurope().then(games => {
-    filtered = games.filter((game) => game.title.toLowerCase().includes("pokémon") || game.title.toLowerCase().includes("イナズマ"))
+    filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.toLowerCase().includes("イナズマ"))
     filtered.length ?
       filtered.forEach(game => {
         bot.channels.fetch("726239440602660874").then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop** @everyone`))
