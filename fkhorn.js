@@ -51,7 +51,9 @@ bot.player.events.on("playerStart", async (queue, track) => {
 })
 
 new cron.CronJob('00 * * * * *', () => {
-  getGamesEurope().then(games => console.log(games))
+  
 }).start()
 
 bot.login(config.token)
+
+getGamesEurope().then(games => console.log(games.filter(game => game.title.includes("Pokémon"))))
