@@ -61,14 +61,10 @@ new cron.CronJob('00 * * * * *', () => {
     filtered = games.filter((game) => game.title.toLowerCase().includes("pokémon") || game.title.toLowerCase().includes("イナズマ"))
     filtered.length ?
       filtered.forEach(game => {
-        res = `:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop**`
-        bot.channels.fetch("726239440602660874").then(chan => chan.send(res+" @everyone"))
-        console.log(res)
-        //bot.channels.fetch("662216228340760596").then(chan => chan.send(res))
-      }) : 
-        res = `:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`
-        bot.channels.fetch("1219989241782599801").then(chan => chan.send(res))
-        //webhook.send(res)
+        bot.channels.fetch("726239440602660874").then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop** @everyone`))
+        bot.channels.fetch("662216228340760596").then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop**`))
+        webhook.send(`:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop**`)
+      }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`))
   })
 
   getGamesJapan().then(games => {
@@ -77,8 +73,8 @@ new cron.CronJob('00 * * * * *', () => {
       filtered.forEach(game => {
         bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** @everyone`))
         bot.channels.fetch("662216228340760596").then(chan => chan.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`))
-      }) :
-      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_jp: \`${date_jp}\` : no hit for **イナズマイレブン** on the **Japanese eShop**`))
+        webhook.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`)
+      }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_jp: \`${date_jp}\` : no hit for **イナズマイレブン** on the **Japanese eShop**`))
   })
 }).start()
 
