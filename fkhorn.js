@@ -55,12 +55,12 @@ new cron.CronJob('00 * * * * *', () => {
   date_str = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' - '+date.getHours()+':'+date.getMinutes()
 
   getGamesEurope().then(games => {
-    filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma"))
+    filtered = games.filter((game) => game.title.toLowerCase().includes("pokémon"))
     filtered.length ?
       filtered.forEach(game => {
-        bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.title}** was found on the European eShop. @everyone`))
+        bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.title}** was found on the European eShop @everyone`))
       }) :
-      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` No hit for Inazuma Eleven on the European eShop.`))
+      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` : no hit for Inazuma Eleven on the European eShop`))
   })
 
 }).start()
