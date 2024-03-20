@@ -78,11 +78,11 @@ new cron.CronJob('00 * * * * *', () => {
 bot.login(config.token)
 
 getGamesJapan().then(games => games.forEach(game => {
-  try{
+  try {
     console.log(game.TitleName.toLowerCase())
-  } catch {
+  } catch (e){
     console.log(game)
-    break
+    throw e
   }
   
 }))
