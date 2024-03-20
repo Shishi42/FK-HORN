@@ -51,16 +51,16 @@ bot.player.events.on("playerStart", async (queue, track) => {
 })
 
 new cron.CronJob('00 * * * * *', () => {
-  date = new Date()
-  console.log(date)
-  date_str = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' - '+date.getHours()+':'+date.getMinutes()
-  getGamesEurope().then(games => 
+  date = Date().getDate()+'/'+(Date().getMonth()+1)+'/'+Date().getFullYear()+' - '+Date().getHours()+':'+Date().getMinutes()
+
+  getGamesEurope().then(games => {
     filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma"))
     filtered.length ?
       filtered.forEach(game => {
         bot.channels.get("1219989241782599801").then(chan => chan.send(`\`${date}\` **${game.title}** was found on the European eShop. @everyone`))
       }) :
-      bot.channels.get("1219989241782599801").then(chan => chan.send(`\`${date}\` No hit for Inazuma Eleven on the European eShop.`)))
+      bot.channels.get("1219989241782599801").then(chan => chan.send(`\`${date}\` No hit for Inazuma Eleven on the European eShop.`))
+  })
 
 }).start()
 
