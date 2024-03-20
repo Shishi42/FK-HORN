@@ -79,7 +79,7 @@ bot.login(config.token)
 
 getGamesJapan().then(games => games.forEach(game => {
   try {
-    console.log(game.TitleName.toLowerCase())
+    console.log(game.TitleName.toString().toLowerCase())
   } catch (e){
     console.log(game)
     throw e
