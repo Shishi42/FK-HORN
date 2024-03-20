@@ -58,7 +58,7 @@ new cron.CronJob('00 * * * * *', () => {
   webhook = new Discord.WebhookClient({id : "1220035828676431992", token : config.ragna_token})
 	
   getGamesEurope().then(games => {
-    filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.toLowerCase().includes("イナズマ"))
+    filtered = games.filter((game) => game.title.toLowerCase().includes("pokémon") || game.title.toLowerCase().includes("イナズマ"))
     filtered.length ?
       filtered.forEach(game => {
         res = `:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop**`
@@ -67,7 +67,7 @@ new cron.CronJob('00 * * * * *', () => {
       }) : 
         res = `:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`
         bot.channels.fetch("1219989241782599801").then(chan => chan.send(res))
-        webhook.send(res)
+        //webhook.send(res)
   })
 
   getGamesJapan().then(games => {
