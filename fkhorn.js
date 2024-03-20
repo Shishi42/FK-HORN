@@ -57,7 +57,6 @@ new cron.CronJob('00 * * * * *', () => {
 bot.login(config.token)
 
 
-getGamesEurope().then(games => games.filter(game => game.title.toLowerCase().includes("inazuma")).size ? console.log("true") : console.log("false"))
-getGamesEurope().then(games => games.filter(game => game.title.toLowerCase().includes("pokémon")).size ? console.log("true") : console.log("false"))
+getGamesEurope().then(games => games.filter(game => game.title.toLowerCase().includes("inazuma")).length ? console.log("true") : console.log("false"))
+getGamesEurope().then(games => games.filter(game => game.title.toLowerCase().includes("pokémon")).length ? console.log("true") : console.log("false"))
 
-getGamesEurope().then(games => console.log(games.filter(game => game.title.toLowerCase().includes("pokémon")).length))
