@@ -77,4 +77,4 @@ new cron.CronJob('00 * * * * *', () => {
 
 bot.login(config.token)
 
-getGamesJapan().then(games => console.log(games))
+getGamesJapan().then(games => games.forEach(game => console.log(game.TitleName)))
