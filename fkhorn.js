@@ -66,5 +66,3 @@ new cron.CronJob('00 * * * * *', () => {
 }).start()
 
 bot.login(config.token)
-
-bot.guilds.forEach(guild => console.log(guild))
