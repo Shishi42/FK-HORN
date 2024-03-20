@@ -71,7 +71,7 @@ new cron.CronJob('00 * * * * *', () => {
         bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** :flag_jp: @everyone`))
         bot.channels.fetch("662216228340760596").then(chan => chan.send(`\`${date_str}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** :flag_jp:`))
       }) :
-      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` : no hit for **Inazuma Eleven** on the **Japanese eShop** :flag_jp:`))
+      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_str}\` : no hit for **イナズマイレブン** on the **Japanese eShop** :flag_jp:`))
   })
 }).start()
 
