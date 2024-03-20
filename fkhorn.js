@@ -4,6 +4,8 @@ const config = require("./config.json")
 const bot = new Discord.Client({intents: 3276799})
 const { Player } = require("discord-player")
 const slashcommands_loader = require("./slashcommands_loader")
+const cron = require("cron")
+const { getGamesEurope, getGamesJapan } = require('nintendo-switch-eshop');
 
 bot.commands = new Discord.Collection()
 bot.color = "553380"
@@ -47,5 +49,9 @@ bot.player.events.on("playerStart", async (queue, track) => {
   if(track.playlist) embed.addFields({name: "Playlist", value: `${track.playlist.title}`})
   queue.metadata.channel.send({ embeds: [embed] })
 })
+
+new cron.CronJob('00 * * * * *', () => {
+  getGamesEurope().then(games => console.log(games))
+}).start()
 
 bot.login(config.token)
