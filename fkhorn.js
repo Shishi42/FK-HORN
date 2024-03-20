@@ -52,6 +52,7 @@ bot.player.events.on("playerStart", async (queue, track) => {
 
 new cron.CronJob('00 * * * * *', () => {
   date = new Date()
+  console.log(date)
   date_str = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' - '+date.getHours()+':'+date.getMinutes()
   getGamesEurope().then(games => 
     filtered = games.filter(game => game.title.toLowerCase().includes("inazuma"))) 
