@@ -60,20 +60,20 @@ new cron.CronJob('00 * * * * *', () => {
     filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.toLowerCase().includes("イナズマ"))
     filtered.length ?
       filtered.forEach(game => {
-        bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop** :flag_eu: @everyone`))
-        bot.channels.fetch("662216228340760596").then(chan => chan.send(`\`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop** :flag_eu:`))
+        bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop** @everyone`))
+        bot.channels.fetch("662216228340760596").then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${game.title}** by __${game.developer}__ was found on the **European eShop**`))
       }) :
-      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop** :flag_eu:`))
+      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`))
   })
 
   getGamesJapan().then(games => {
     filtered = games.filter((game) => game.TitleName.toString().includes("inazuma") || game.TitleName.toString().includes("イナズマ"))
     filtered.length ?
       filtered.forEach(game => {
-        bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** :flag_jp: @everyone`))
-        bot.channels.fetch("662216228340760596").then(chan => chan.send(`\`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** :flag_jp:`))
+        bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop** @everyone`))
+        bot.channels.fetch("662216228340760596").then(chan => chan.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`))
       }) :
-      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`\`${date_jp}\` : no hit for **イナズマイレブン** on the **Japanese eShop** :flag_jp:`))
+      bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_jp: \`${date_jp}\` : no hit for **イナズマイレブン** on the **Japanese eShop**`))
   })
 }).start()
 
