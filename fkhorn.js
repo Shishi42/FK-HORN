@@ -13,6 +13,8 @@ bot.color = "553380"
 bot.player = new Player(bot)
 bot.player.extractors.loadDefault()
 
+bot.check = true
+
 bot.on("ready", async () => {
   console.log(`Connecté en tant que ${bot.user.tag}!`)
 	await slashcommands_loader(bot)
@@ -62,24 +64,28 @@ new cron.CronJob('00 * * * * *', () => {
   new Discord.WebhookClient({id : "1220083643196899368", token : config.angelico_token}),
   ]
   channels = ["423919360902692866","662216228340760596"]
-	
-  getGamesEurope().then(games => {
-    filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.toLowerCase().includes("イナズマ"))
-    filtered.length ?
-      filtered.forEach(filter => {
-        channels.forEach(channel => bot.channels.fetch(channel).then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`)))
-        webhooks.forEach(webhook => webhook.send(`:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`))
-      }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`))
-  })
 
-  getGamesJapan().then(games => {
-    filtered = games.filter((game) => game.TitleName.toString().includes("inazuma") || game.TitleName.toString().includes("イナズマ"))
-    filtered.length ?
-      filtered.forEach(filter => {
-        channels.forEach(channel => bot.channels.fetch(channel).then(chan => chan.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`)))
-        webhooks.forEach(webhook => webhook.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`))
-      }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_jp: \`${date_jp}\` : no hit for **イナズマイレブン** on the **Japanese eShop**`))
-  })
+  if(bot.check){
+    getGamesEurope().then(games => {
+      filtered = games.filter((game) => game.title.toLowerCase().includes("inazuma") || game.title.toLowerCase().includes("イナズマ"))
+      filtered.length ?
+        filtered.forEach(filter => {
+          channels.forEach(channel => bot.channels.fetch(channel).then(chan => chan.send(`:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`)))
+          webhooks.forEach(webhook => webhook.send(`:flag_eu: \`${date_eu}\` **${filter.title}** by __${filter.developer}__ was found on the **European eShop**`))
+          bot.check = false
+        }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_eu: \`${date_eu}\` : no hit for **Inazuma Eleven** on the **European eShop**`))
+    })
+
+    getGamesJapan().then(games => {
+      filtered = games.filter((game) => game.TitleName.toString().includes("inazuma") || game.TitleName.toString().includes("イナズマ"))
+      filtered.length ?
+        filtered.forEach(filter => {
+          channels.forEach(channel => bot.channels.fetch(channel).then(chan => chan.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`)))
+          webhooks.forEach(webhook => webhook.send(`:flag_jp: \`${date_jp}\` **${game.TitleName}** by __${game.MakerName}__ was found on the **Japanese eShop**`))
+          bot.check = false
+        }) : bot.channels.fetch("1219989241782599801").then(chan => chan.send(`:flag_jp: \`${date_jp}\` : no hit for **イナズマイレブン** on the **Japanese eShop**`))
+    })
+  }
 }).start()
 
 bot.login(config.token)
